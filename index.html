@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Surfin-PM管理训练营优秀案例库</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'Inter', 'sans-serif'],
+                        serif: ['"Noto Serif SC"', 'serif'],
+                    },
+                    colors: {
+                        surfin: {
+                            blue: '#0ea5e9',
+                            dark: '#0b1120',
+                            card: '#1e293b',
+                            text: '#e2e8f0',
+                            muted: '#94a3b8'
+                        },
+                        // 国家定制色
+                        kenya: { red: '#BF0A30', green: '#007A3D', black: '#000' },
+                        indo: { gold: '#D4AF37', brown: '#8B4513' }, 
+                        mexico: { pink: '#E4007C', green: '#006847' }, 
+                        central: { blue: '#00AFCA', gold: '#FFC639' } 
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 隐藏滚动条但保留功能 */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        body {
+            background-color: #0b1120;
+            color: #e2e8f0;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b1120 70%);
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7); /* 加深背景以提高文字可读性 */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 阅读模式排版 */
+        .article-content p { margin-bottom: 1.8em; line-height: 1.8; color: #cbd5e1; font-size: 1.05rem; text-align: justify; font-weight: 300; }
+        .article-content h2 { font-family: 'Noto Serif SC', serif; font-size: 1.4rem; font-weight: 600; color: #fff; margin-top: 2.5em; margin-bottom: 1em; display: flex; align-items: center; }
+        .article-content h2::before { content: ''; display: inline-block; width: 4px; height: 1em; background-color: #0ea5e9; margin-right: 0.75rem; border-radius: 2px; }
+        .article-content h3 { font-size: 1.15rem; font-weight: 500; color: #e2e8f0; margin-top: 2em; margin-bottom: 0.8em; }
+        .article-content strong { color: #38bdf8; font-weight: 500; }
+        .article-quote { border-left: 3px solid #0ea5e9; padding-left: 1rem; margin: 2rem 0; color: #94a3b8; font-style: italic; background: rgba(14, 165, 233, 0.05); padding: 1rem; border-radius: 0 8px 8px 0; }
+
+        /* 背景纹理 (高辨识度剪影) */
+        .bg-silhouette {
+            position: absolute; bottom: 0; right: 0; width: 100%; height: 100%; 
+            opacity: 0.08; pointer-events: none; z-index: -1;
+            background-repeat: no-repeat; background-position: bottom right; background-size: contain;
+        }
+        /* 肯尼亚：金合欢树 */
+        .bg-kenya { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 200 L100 150 Q90 130 60 120 Q40 115 20 120 Q60 100 100 110 L100 120 Q110 100 150 90 Q180 85 200 90' stroke='white' stroke-width='8' fill='none'/%3E%3C/svg%3E"); }
+        /* 印尼：热带植物 */
+        .bg-indo { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 200 Q80 150 20 120 Q80 120 100 80 Q120 120 180 120 Q120 150 100 200' fill='none' stroke='white' stroke-width='5'/%3E%3C/svg%3E"); }
+        /* 墨西哥：仙人掌 */
+        .bg-mexico { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 200 V100 M100 140 H60 V100 M100 130 H140 V90' stroke='white' stroke-width='10' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"); }
+        /* 中亚：雪山 */
+        .bg-central { background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 100 L60 40 L100 100 L140 20 L180 100' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E"); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ==================== 场景 1：首页导航 (入口) ==================== -->
+    <div id="view-home" class="w-full min-h-screen transition-opacity duration-500">
+        <nav class="w-full py-6 px-6 flex justify-center animate-fade-in">
+            <div class="flex items-center gap-2 opacity-80">
+                <div class="w-6 h-6 bg-surfin-blue rounded flex items-center justify-center shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                    <span class="font-serif font-bold text-white text-xs">PM</span>
+                </div>
+                <span class="text-xs font-medium text-slate-400 tracking-[0.2em] uppercase">Surfin Management Training Camp</span>
+            </div>
+        </nav>
+
+        <header class="max-w-4xl mx-auto px-6 pt-12 pb-16 text-center animate-slide-up">
+            <h1 class="font-serif text-3xl md:text-5xl font-bold mb-6 leading-tight text-white">
+                Surfin-PM管理训练营<br>优秀案例库
+            </h1>
+            <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+                <span class="text-surfin-blue font-medium">14位 PM · 4个月实战 · 4个破局样本</span>
+            </p>
+        </header>
+
+        <main class="max-w-5xl mx-auto px-4 pb-24 grid grid-cols-1 md:grid-cols-2 gap-6 animate-slide-up" style="animation-delay: 0.1s">
+            <!-- 卡片 1: 肯尼亚 -->
+            <div onclick="navigateTo('case1-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-kenya-red hover:bg-slate-800/50 transition-colors">
+                <div class="bg-silhouette bg-kenya opacity-10"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-bold text-kenya-red border border-kenya-red/30 px-2 py-0.5 rounded">CASE 01 · KENYA</span>
+                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-white mb-2">高风险环境下的<br>管理实践</h3>
+                <p class="text-xs text-slate-400">外部暴乱 vs 内部红线，如何设计第三套生存系统？</p>
+                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">B</div>Bob · 危机管理</div>
+            </div>
+
+            <!-- 卡片 2: 印尼 -->
+            <div onclick="navigateTo('case2-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-indo-gold hover:bg-slate-800/50 transition-colors">
+                <div class="bg-silhouette bg-indo opacity-10"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-bold text-indo-gold border border-indo-gold/30 px-2 py-0.5 rounded">CASE 02 · INDONESIA</span>
+                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-white mb-2">从超级PM到指挥官的<br>转型之路</h3>
+                <p class="text-xs text-slate-400">累死累活团队却长不大？用授权协议把能力复制给团队。</p>
+                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">L</div>Liu Lin · 授权</div>
+            </div>
+
+            <!-- 卡片 3: 墨西哥 -->
+            <div onclick="navigateTo('case3-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-mexico-pink hover:bg-slate-800/50 transition-colors">
+                <div class="bg-silhouette bg-mexico opacity-10"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-bold text-mexico-pink border border-mexico-pink/30 px-2 py-0.5 rounded">CASE 03 · MEXICO</span>
+                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-white mb-2">如何拆掉一堵<br>“隐形的墙”</h3>
+                <p class="text-xs text-slate-400">面对“非必要不沟通”的文化墙，如何让协作流动起来？</p>
+                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">R</div>Lu Lu · 跨文化</div>
+            </div>
+
+            <!-- 卡片 4: 中亚 -->
+            <div onclick="navigateTo('case4-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-central-blue hover:bg-slate-800/50 transition-colors">
+                <div class="bg-silhouette bg-central opacity-10"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-bold text-central-blue border border-central-blue/30 px-2 py-0.5 rounded">CASE 04 · CENTRAL ASIA</span>
+                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-white mb-2">一次“让对方会做”的<br>跨文化任务辅导</h3>
+                <p class="text-xs text-slate-400">新人不敢动？用前馈清单和工具包，把“下指令”变成“搭桥梁”。</p>
+                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">L</div>Li Changyue · 辅导</div>
+            </div>
+        </main>
+        <footer class="text-center pb-8 text-[10px] text-slate-600 font-mono"><p>&copy; 2025 Surfin Learning & Development. Internal Use Only.</p></footer>
+    </div>
+
+
+    <!-- ====================================================================================== -->
+    <!-- CASE 1: 肯尼亚 (Bob) - [还原 V3 硬核结构 + V4 背景] -->
+    <!-- ====================================================================================== -->
+    <div id="view-case1-summary" class="view-section hidden w-full min-h-screen relative">
+        <div class="bg-silhouette bg-kenya opacity-10"></div>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 01</div></div></nav>
+        
+        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+            <!-- Header -->
+            <header class="mb-8 animate-slide-up">
+                <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-kenya-red/20 text-kenya-red border border-kenya-red/30">危机管理</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-kenya-green/20 text-kenya-green border border-kenya-green/30">肯尼亚</span></div>
+                <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">肯尼亚高风险环境下的<br>管理实践</h1>
+                <div class="flex items-center gap-2 text-xs text-slate-400"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-[10px] text-white">Bob</div><span>刘博 · 肯尼亚项目经理</span></div>
+            </header>
+
+            <!-- Hook -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="bg-surfin-card rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：你会怎么选？</h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">外部暴乱通勤危险，内部合规收紧易被开除。业务不能停，人命输不起。</p>
+                    <div class="space-y-2" id="decision-box-c1">
+                        <button onclick="selectOption(this, 'insight-c1')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-surfin-blue flex-shrink-0"></div><span>保安全：全员停工，申请下调指标</span></button>
+                        <button onclick="selectOption(this, 'insight-c1')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-surfin-blue flex-shrink-0"></div><span>保业绩：重赏之下必有勇夫，默许灰色手段</span></button>
+                    </div>
+                    <div id="insight-c1" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-surfin-blue font-medium mb-1">Bob 的破局思路：</p><p class="text-xs text-slate-400">这不是单选题。真正的管理是在混乱中建立一套系统，既保护团队，又维持运转。</p></div>
+                </div>
+            </section>
+
+            <!-- 核心干货 1：作战地图 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-between mb-3"><h2 class="text-base font-bold text-white">突破一：居家办公作战地图</h2><span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 border border-slate-700">可复制</span></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-surfin-blue/30 transition-colors">
+                        <div class="text-[10px] font-bold text-surfin-blue mb-1.5 uppercase tracking-wider">Part 1 胜利标准</div>
+                        <div class="text-sm text-slate-200 font-medium">零受伤 + 八成效率</div>
+                        <div class="text-xs text-slate-500 mt-1">低于六成业务崩盘，八成是平衡点。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-surfin-blue/30 transition-colors">
+                        <div class="text-[10px] font-bold text-surfin-blue mb-1.5 uppercase tracking-wider">Part 2 关键动作</div>
+                        <ul class="text-xs text-slate-400 space-y-1">
+                            <li>• 9:00 安全确认</li><li>• 14:00 强度确认</li><li>• 18:00 进度汇总</li>
+                        </ul>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-surfin-blue/30 transition-colors">
+                        <div class="text-[10px] font-bold text-surfin-blue mb-1.5 uppercase tracking-wider">Part 3 风险预案</div>
+                        <ul class="text-xs text-slate-400 space-y-1">
+                            <li><strong class="text-slate-300">停电：</strong>保手机80%电，备用电源。</li>
+                            <li><strong class="text-slate-300">断网：</strong>启用离线工作包。</li>
+                            <li><strong class="text-slate-300">骚乱：</strong>红色预警，立刻停工。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-surfin-blue/30 transition-colors">
+                        <div class="text-[10px] font-bold text-surfin-blue mb-1.5 uppercase tracking-wider">Part 4 执行节奏</div>
+                        <div class="flex justify-between text-xs text-slate-400 mt-2"><span>24h预警</span><span>→</span><span class="text-surfin-blue font-bold">48h执行</span><span>→</span><span>24h复盘</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心干货 2：双轮驱动 (展开) -->
+            <section class="mb-8 animate-slide-up" style="animation-delay: 0.3s">
+                <h2 class="text-base font-bold text-white mb-3">突破二：文化的双轮驱动</h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 relative overflow-hidden">
+                        <div class="text-green-400 text-xs mb-1"><i class="ph-fill ph-star"></i> 合规之星（激励）</div>
+                        <div class="text-xs text-slate-400">评选：零投诉+回款达标。<br>权益：<span class="text-green-400">奖金+30%</span>，优先晋升。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 relative overflow-hidden">
+                        <div class="text-red-400 text-xs mb-1"><i class="ph-fill ph-prohibit"></i> 零容忍清单（红线）</div>
+                        <div class="text-xs text-slate-400">5大必死行为（如威胁客户）。<br>后果：<span class="text-red-400">直接开除</span>，主管连带。</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心干货 3：建设性批评 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.4s">
+                <h2 class="text-base font-bold text-white mb-3">突破三：建设性批评算法</h2>
+                <div class="bg-surfin-card rounded-lg border border-white/5 p-4 flex gap-2 text-xs text-slate-400">
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">1. 肯定</div>稳定情绪</div>
+                    <div class="w-px bg-white/10"></div>
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">2. 复盘</div>理解动机</div>
+                    <div class="w-px bg-white/10"></div>
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">3. 共创</div>提出方案</div>
+                </div>
+            </section>
+
+            <!-- 底部按钮 -->
+            <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
+                <button onclick="navigateTo('case1-article')" class="w-full max-w-md bg-surfin-blue hover:bg-blue-500 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- ====================================================================================== -->
+    <!-- CASE 2: 印尼 (Liu Lin) - [硬核结构 + 特色背景] -->
+    <!-- ====================================================================================== -->
+    <div id="view-case2-summary" class="view-section hidden w-full min-h-screen relative">
+        <div class="bg-silhouette bg-indo opacity-10"></div>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 02</div></div></nav>
+        
+        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+            <header class="mb-8 animate-slide-up">
+                <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indo-gold/20 text-indo-gold border border-indo-gold/30">任务授权</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">印尼</span></div>
+                <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">从超级PM到指挥官的<br>转型之路</h1>
+                <div class="flex items-center gap-2 text-xs text-slate-400"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-[10px] text-white">Liu</div><span>刘林 · 印尼项目经理</span></div>
+            </header>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="bg-surfin-card rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：自己干还是放手？</h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">身兼数职，团队依赖。自己干会累死，放手怕失控。怎么选？</p>
+                    <div class="space-y-2" id="decision-box-c2">
+                        <button onclick="selectOption(this, 'insight-c2')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-indo-gold flex-shrink-0"></div><span>A. 自己扛，保证短期效率</span></button>
+                        <button onclick="selectOption(this, 'insight-c2')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-indo-gold flex-shrink-0"></div><span>B. 直接放手，优胜劣汰</span></button>
+                    </div>
+                    <div id="insight-c2" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-indo-gold font-medium mb-1">刘林的破局思路：</p><p class="text-xs text-slate-400">通过“结构化授权”和“教练式辅导”，把个人能力复制给团队，建立独立作战系统。</p></div>
+                </div>
+            </section>
+
+            <!-- 核心干货 1：授权协议 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-between mb-3"><h2 class="text-base font-bold text-white">突破一：真正的授权协议</h2><span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 border border-slate-700">五要素</span></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider">1. 授权范围</div>
+                        <div class="text-xs text-slate-400">具体到可量化的职责（如：日常运营、排班、考核）。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider">2. 目标标准</div>
+                        <div class="text-xs text-slate-400">满意度>85分，时效48h内。给明确方向。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider">3. 决策权限 + 4. 支持</div>
+                        <div class="text-xs text-slate-400">500美元内自批；每周1次辅导，跨部门我来推。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider">5. 容错空间</div>
+                        <div class="text-xs text-slate-400">允许试错，只要非恶意且事后复盘。给心理安全感。</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心干货 2：GROW模型 (展开) -->
+            <section class="mb-8 animate-slide-up" style="animation-delay: 0.3s">
+                <h2 class="text-base font-bold text-white mb-3">突破二：教练式辅导 (GROW)</h2>
+                <div class="bg-surfin-card rounded-lg border border-white/5 p-4 grid grid-cols-2 gap-4 text-xs text-slate-400">
+                    <div><div class="text-white font-bold mb-1">Goal (目标)</div>"你想达到什么效果？"</div>
+                    <div><div class="text-white font-bold mb-1">Reality (现状)</div>"现在情况如何？"</div>
+                    <div><div class="text-white font-bold mb-1">Options (选项)</div>"你有哪些选择？"</div>
+                    <div><div class="text-white font-bold mb-1">Will (行动)</div>"你打算什么时候做？"</div>
+                </div>
+            </section>
+
+            <!-- 核心干货 3：办事攻略 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.4s">
+                <h2 class="text-base font-bold text-white mb-3">突破三：知识沉淀《办事攻略》</h2>
+                <div class="bg-surfin-card rounded-lg border border-white/5 p-4 flex gap-2 text-xs text-slate-400">
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">场景</div>什么情况下用</div>
+                    <div class="w-px bg-white/10"></div>
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">步骤</div>3-5个动作</div>
+                    <div class="w-px bg-white/10"></div>
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">避坑</div>注意事项</div>
+                </div>
+            </section>
+
+            <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
+                <button onclick="navigateTo('case2-article')" class="w-full max-w-md bg-indo-gold hover:bg-amber-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- ====================================================================================== -->
+    <!-- CASE 3: 墨西哥 (Lu Lu) - [硬核结构 + 特色背景] -->
+    <!-- ====================================================================================== -->
+    <div id="view-case3-summary" class="view-section hidden w-full min-h-screen relative">
+        <div class="bg-silhouette bg-mexico opacity-10"></div>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 03</div></div></nav>
+        
+        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+            <header class="mb-8 animate-slide-up">
+                <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-mexico-pink/20 text-mexico-pink border border-mexico-pink/30">跨文化</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">墨西哥</span></div>
+                <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">如何拆掉一堵<br>“隐形的墙”</h1>
+                <div class="flex items-center gap-2 text-xs text-slate-400"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-[10px] text-white">Lu</div><span>路璐 · 墨西哥市场主管</span></div>
+            </header>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="bg-surfin-card rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：硬推还是放任？</h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">文化导致“非必要不沟通”，协作如死水。硬推规定无效，放任则效率低。</p>
+                    <div class="space-y-2" id="decision-box-c3">
+                        <button onclick="selectOption(this, 'insight-c3')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-mexico-pink flex-shrink-0"></div><span>A. 强制规定，不执行就罚</span></button>
+                        <button onclick="selectOption(this, 'insight-c3')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-mexico-pink flex-shrink-0"></div><span>B. 尊重文化，降低预期</span></button>
+                    </div>
+                    <div id="insight-c3" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-mexico-pink font-medium mb-1">路璐的破局思路：</p><p class="text-xs text-slate-400">用“私下倾听”建立信任，用“集体共创”达成契约，把沟通变成安全的流程。</p></div>
+                </div>
+            </section>
+
+            <!-- 核心干货 1：沟通蓝图 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-between mb-3"><h2 class="text-base font-bold text-white">突破一：私下倾听 5 问</h2><span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 border border-slate-700">摸底</span></div>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-mexico-pink/30 transition-colors">
+                        <ul class="text-xs text-slate-400 space-y-2">
+                            <li>1. "现在最大的困难是什么？"</li>
+                            <li>2. "希望其他人怎么配合？"</li>
+                            <li>3. "可以怎么改进？"</li>
+                            <li>4. "有什么顾虑？"</li>
+                            <li>5. "愿不愿意一起定规则？"</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心干货 2：集体共创 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.3s">
+                <div class="flex items-center justify-between mb-3"><h2 class="text-base font-bold text-white">突破二：集体共创 & 工单</h2></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-mexico-pink/30 transition-colors">
+                        <div class="text-[10px] font-bold text-mexico-pink mb-1.5 uppercase tracking-wider">会议技巧</div>
+                        <div class="text-xs text-slate-400">匿名呈现问题 → 分组讨论方案 → 达成共识。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-mexico-pink/30 transition-colors">
+                        <div class="text-[10px] font-bold text-mexico-pink mb-1.5 uppercase tracking-wider">协作工单 6 要素</div>
+                        <div class="text-xs text-slate-400">任务名、发起人、配合部门、内容、时间、优先级。</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心干货 3：ATM法 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.4s">
+                <h2 class="text-base font-bold text-white mb-3">突破三：ATM 激励法</h2>
+                <div class="bg-surfin-card rounded-lg border border-white/5 p-4 flex gap-2 text-xs text-slate-400">
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">Acknowledge</div>认可行为</div>
+                    <div class="w-px bg-white/10"></div>
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">Target</div>校准目标</div>
+                    <div class="w-px bg-white/10"></div>
+                    <div class="flex-1 text-center"><div class="text-white font-bold mb-1">Model</div>树立榜样</div>
+                </div>
+            </section>
+
+            <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
+                <button onclick="navigateTo('case3-article')" class="w-full max-w-md bg-mexico-pink hover:bg-pink-600 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- ====================================================================================== -->
+    <!-- CASE 4: 中亚 (Li Changyue) - [硬核结构 + 特色背景] -->
+    <!-- ====================================================================================== -->
+    <div id="view-case4-summary" class="view-section hidden w-full min-h-screen relative">
+        <div class="bg-silhouette bg-central opacity-10"></div>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 04</div></div></nav>
+        
+        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+            <header class="mb-8 animate-slide-up">
+                <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-central-blue/20 text-central-blue border border-central-blue/30">辅导</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">中亚</span></div>
+                <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">一次“让对方会做”的<br>跨文化任务辅导</h1>
+                <div class="flex items-center gap-2 text-xs text-slate-400"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-[10px] text-white">Li</div><span>李长玥 · 中亚区域PM</span></div>
+            </header>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.1s">
+                <div class="bg-surfin-card rounded-xl p-5 border border-white/10 relative overflow-hidden shadow-lg">
+                    <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：催促还是代劳？</h3>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed">本地员工态度好但不动手，任务卡壳。自己做团队不成长，催促可能伤积极性。</p>
+                    <div class="space-y-2" id="decision-box-c4">
+                        <button onclick="selectOption(this, 'insight-c4')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-central-blue flex-shrink-0"></div><span>A. 加强管控，天天催日报</span></button>
+                        <button onclick="selectOption(this, 'insight-c4')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-central-blue flex-shrink-0"></div><span>B. 直接把活干了，省心</span></button>
+                    </div>
+                    <div id="insight-c4" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-central-blue font-medium mb-1">长玥的破局思路：</p><p class="text-xs text-slate-400">从“推任务”转向“搭路径”。用前馈清单和工具库帮他建立认知地图。</p></div>
+                </div>
+            </section>
+
+            <!-- 核心干货 1：前馈清单 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.2s">
+                <div class="flex items-center justify-between mb-3"><h2 class="text-base font-bold text-white">突破一：前馈清单引导</h2><span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 border border-slate-700">思考框架</span></div>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-central-blue/30 transition-colors">
+                        <ul class="text-xs text-slate-400 space-y-2">
+                            <li>• "我们为什么要做这件事？" (对齐意义)</li>
+                            <li>• "目标标准是什么？" (明确交付)</li>
+                            <li>• "最关键的几步是什么？" (抓核心)</li>
+                            <li>• "会遇到哪些困难？" (预判风险)</li>
+                            <li>• "多久同步一次？" (反馈频率)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 核心干货 2：工具支撑 (展开) -->
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.3s">
+                <div class="flex items-center justify-between mb-3"><h2 class="text-base font-bold text-white">突破二：前置工具支撑</h2></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-central-blue/30 transition-colors">
+                        <div class="text-[10px] font-bold text-central-blue mb-1.5 uppercase tracking-wider">发武器库</div>
+                        <div class="text-xs text-slate-400">提前给《核心术语表》《流程图》《注意事项》。传递信任。</div>
+                    </div>
+                    <div class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-central-blue/30 transition-colors">
+                        <div class="text-[10px] font-bold text-central-blue mb-1.5 uppercase tracking-wider">反述确认</div>
+                        <div class="text-xs text-slate-400">用“你打算怎么做”代替“你懂了吗”。双向确认。</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
+                <button onclick="navigateTo('case4-article')" class="w-full max-w-md bg-central-blue hover:bg-cyan-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- ====================================================================================== -->
+    <!-- ARTICLE VIEWS (Full Text - 一字不差) -->
+    <!-- ====================================================================================== -->
+
+    <!-- CASE 1 ARTICLE (Kenya) -->
+    <article id="view-case1-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
+        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
+            <button onclick="navigateTo('case1-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+            <h1 class="font-serif text-3xl font-bold text-white mb-6">肯尼亚高风险环境下的管理实践</h1>
+            <p>肯尼亚，是刘博奋斗了五年的战场。作为项目经理，他管理着一个近三百名当地员工组成的业务团队，在东非这个政治局势复杂、经济脆弱的市场环境中，为当地民众提供小额信贷服务。这项业务本身极具价值，但也意味着团队的每一天都如履薄冰。</p>
+            
+            <h2>一、情境与冲突</h2>
+            <p>刘博面临着两个随时可能引爆的、尖锐的冲突。</p>
+            <p>首先是外部的政治风险。游行、示威是肯尼亚的常态，这不仅直接冲击业务的回款率，更严重的是，它将员工的通勤安全置于巨大的危险之中。在刘博接手之前，几乎每一次大规模冲突，都有同事在路上受伤。这就形成了一个异常残酷的管理两难：一边是不可中断的业务，另一边是管理者输不起的员工安全。</p>
+            <p>其次是内部的合规风险。随着政府对催收行为的监管收紧，催收这个关键环节变得束手束脚。催收员们被夹在业绩压力和合规红线之间，压力巨大。任何一次不当操作，都可能换来天价罚单和公司的声誉危机。团队里弥漫着挫败感，有人开始躺平，有人铤而走险。</p>
+            <p>刘博给自己设定了一个标准：真正的管理不是在危机中做单选题，而是在混乱中建立一套系统。</p>
+
+            <h2>二、决策与路径</h2>
+            <p>在找到自己的方法之前，刘博走过弯路。他意识到，常见做法的问题在于它们都是在做单选题。要么安全要么业绩，要么放任要么严惩。但真实世界不是单选题，而是一个多目标平衡的复杂系统。他必须放弃简单粗暴的二选一，去设计一条第三条路。</p>
+
+            <h3>第一个突破：把危机管理变成系统设计</h3>
+            <p>在应对政治风险时，刘博把自己定位成"战时指挥官"。但他不是临场发挥，而是用整整一个下午，为团队设计了一张详尽的"居家办公作战地图"。</p>
+            <p>这张地图包含四个核心部分：</p>
+            <p>第一部分是胜利标准。他明确提出两个必须达成的目标：零受伤，八成效率。零受伤是底线，不能有任何员工在通勤中遇险。八成效率是他根据过往数据推算出来的合理目标。居家办公不可能达到百分之百效率，但如果低于六成，业务就会受到严重影响。八成是在安全和业务之间的平衡点。</p>
+            <p>第二部分是关键动作。他拆解出居家办公必须完成的三个动作：定时签到、在线协作、实时汇报。定时签到的设计很细。早上9点、下午2点、晚上6点，三次签到。为什么是这三个时间点？因为早上9点确认大家安全到位，下午2点是工作强度最高的时段需要确认状态，晚上6点是收尾阶段需要汇总进度。</p>
+            <p>第三部分是风险预案。他预判了三种可能出现的意外。停电是最常见的风险。肯尼亚电力供应不稳定，居家办公最怕断电。他的预案是：每个员工必须保证手机电量在80%以上，准备好备用电源或充电宝。一旦断电，立刻切换到手机办公。网络中断也是高频风险。他的预案是：员工提前下载离线工作包。骚乱升级是最危险的情况。如果游行演变成暴力冲突，他的预案是：立刻启动"红色预警"，所有人停止工作。</p>
+            <p>第四部分是执行节奏。他把整个危机周期分成三个阶段：危机前24小时预警期、危机中48小时执行期、危机后24小时复盘期。这张作战地图的核心价值不是它有多完美，而是它给了团队一个确定性。</p>
+
+            <h3>第二个突破：用文化塑造代替简单管控</h3>
+            <p>在处理合规风险时，刘博摒弃了"要么放任、要么严惩"的极端做法。他设计了一套"双轮驱动+温度批评"的文化塑造系统。</p>
+            <p>第一个轮子是正向激励，叫"合规之星"月度评选。这个评选的标准很明确：当月零投诉、回款率达标、团队协作良好。获奖的实际好处包括：当月奖金加30%，优先获得晋升机会，照片贴在办公室荣誉墙上，在公司内部刊物上分享经验。这些好处不是随便给的，而是实实在在能改变催收员职业发展的东西。</p>
+            <p>第二个轮子是红线约束，叫"零容忍清单"。刘博列出了五种恶意违规行为：威胁客户人身安全、泄露客户隐私信息、伪造催收记录、收受客户贿赂、串通客户欺诈。这五种行为只要被证实，立刻开除，没有任何商量余地。主管也要承担连带责任，轻则降职，重则开除。</p>
+            
+            <h3>第三个突破：纠错的沟通算法</h3>
+            <p>光有高压还不够，因为大量的违规行为不是恶意的，而是无心之失。对于这些情况，他设计了"建设性批评"流程。</p>
+            <p>第一步是先肯定。组长找到犯错的催收员，先肯定他的工作态度和过往表现。比如："小王，我知道你这个月很拼，回款率一直在组里前三，我看到了你的努力。"这句话的作用是稳定对方情绪，让他知道管理者不是来否定他的。</p>
+            <p>第二步是复盘事实。组长把违规的具体情况复述一遍，问对方："当时你是怎么想的？为什么会这么做？"这个问题不是为了指责，而是为了理解对方的动机和当时的判断。很多时候，催收员违规是因为他觉得"这么做能要回钱"，他不知道这么做会触发投诉。理解动机之后，才能对症下药。</p>
+            <p>第三步是共创方案。组长会问："如果再遇到类似情况，你觉得可以怎么处理？"让对方自己说出改进方案，而不是管理者直接给答案。如果对方说不出来，组长会提供2-3个可选方案，问"你觉得哪个更合适"。这个过程让催收员参与到解决方案的设计中，他会更容易接受和执行。</p>
+
+            <h2>三、结果与复盘</h2>
+            <p>刘博的这套组合拳很快收到了清晰的回报。在业务结果上，安全方面，之后的数次大规模游行中，团队再未出现一例员工受伤事件，同时居家办公的效率稳定在八成以上。</p>
+            <p>比业务结果更重要的是团队的变化。刘博在复盘会上问过一位催收组长："你觉得这一年最大的变化是什么？"组长说："以前我们觉得合规是麻烦，现在我们觉得合规是本事。以前是公司逼着我们合规，现在是我们自己想做得更专业。"</p>
+            <p>另一位获得过两次"合规之星"的催收员说："以前我压力大的时候，会想'管他的，先把钱要回来再说'。现在我会想'有没有既合规又有效的办法'。这不是因为我怕被罚，而是因为我发现这样做真的能让我走得更远。"</p>
+
+            <h2>四、什么时候用这套方法</h2>
+            <p>刘博的"战时系统+文化塑造"不是万能的，它有明确的适用边界。</p>
+            <p>1. 面对的是高频、可预判的风险（如游行）。</p>
+            <p>2. 你有足够的管理权限和资源（能调配资源、设立奖励）。</p>
+            <p>3. 团队规模在50人以上（系统化收益大于成本）。</p>
+            <p>4. 文化塑造需要至少3个月的周期（不能急功近利）。</p>
+            <p>5. 适合"高压力+高风险"的业务场景。</p>
+        </div>
+    </article>
+
+    <!-- CASE 2 ARTICLE (Indonesia) -->
+    <article id="view-case2-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
+        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
+            <button onclick="navigateTo('case2-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+            <h1 class="font-serif text-3xl font-bold text-white mb-6">从超级PM到指挥官的转型之路</h1>
+            <p>在快速增长的印尼市场，刘林承担了一个几乎"不可能"的角色。她既是核心支付业务的PM，同时还带着数字营销、销售、HR和客服四个团队。就像一只八爪鱼，她一个人支撑着由本地年轻人组成的高速团队。</p>
+            <p>但随着业务扩张，她的时间和精力被一点点榨干，她的经验和能力也无法快速传递给团队。问题很快暴露出来。</p>
+
+            <h2>一、情境与冲突</h2>
+            <p>一方面，她被分身的工作压得透不过气。市场部的KOL投放要她拍板，销售的客户策略要她定方向，招聘环节要她给意见，新组建的客服部门更是事事依赖她。她每天都在会议和审批中来回切换，从早上9点到晚上10点，日程被切成碎片。决策速度和质量都在下降。</p>
+            <p>另一方面，团队逐渐依赖她。大家习惯了等她指令，很少有人主动拿出成型的方案。客服部遇到疑难投诉，第一反应是"刘林会怎么处理"。市场部设计活动方案，总是先列几个选项等她选。销售团队制定客户策略，也要等她开会拍板。看似是她在保驾护航，其实团队慢慢失去了独立作战的能力。</p>
+            <p>刘林陷入矛盾。如果继续当"万能英雄"，她知道自己会先垮掉，团队也永远长不大。可要是真放手，以团队目前的经验，很可能会出现短期的混乱甚至失控。</p>
+
+            <h2>二、决策与路径</h2>
+            <p>在找到自己的方法之前，刘林试过几种常见的做法...（试错过程略）...她给自己设定了一个转型目标：不再把解决问题当成目标，而是把建立一个能解决问题的机制当成核心任务。换句话说，她要从"超级士兵"变成"指挥官"。</p>
+
+            <h3>第一步：识别潜力人才，进行真正的授权</h3>
+            <p>刘林先做了一件事，她用PM管理训练营的"意愿三角"工具给团队做了一次全面盘点。她发现，团队里大部分人不是能力不行，而是没有被真正授权过。她挑出了两位重点培养对象：Devi（客服）和Ira（市场）。</p>
+            <p>她分别和Devi、Ira进行了一次"正式授权谈话"，并准备了一份《授权协议》，包含五个部分：</p>
+            <p>第一部分是授权范围。明确告诉Devi："从下周开始，客服部的日常运营、投诉处理、人员排班、月度考核，这四件事全部由你负责。你有最终决策权。"</p>
+            <p>第二部分是目标标准。设定三个核心指标：客户满意度保持在85分以上，投诉处理时效48小时内完成率达到90%，团队流失率控制在10%以内。</p>
+            <p>第三部分是决策权限。明确哪些事可以自己决策，哪些事需要汇报。例如单笔500美元以内的客户补偿，Devi可以直接批。</p>
+            <p>第四部分是支持方式。承诺每周做一次1对1辅导，帮她打通跨部门渠道，申请预算支持。</p>
+            <p>第五部分是容错空间。明确告诉Devi："你在这个授权范围内，可以试错。如果决策出了问题，只要不是恶意的，我不会追责。但我希望你每次试错之后都能复盘。"</p>
+
+            <h3>第二步：用教练式辅导代替直接给答案</h3>
+            <p>授权之后，刘林面临的第一个考验就是"忍住不给答案"。当Ira遇到KOL报价超预算的问题时，刘林忍住了直接给方案的冲动，用GROW模型引导Ira思考。</p>
+            <p>第一步，Goal（目标）。"你做这次活动的目标是什么？具体希望达到什么效果？"</p>
+            <p>第二步，Reality（现状）。"那现在的情况是什么？这个KOL能帮你达到这个目标吗？如果不选他还有什么选择？"</p>
+            <p>第三步，Options（选项）。"那你现在有几个选项？你觉得哪个最可能达成目标？"</p>
+            <p>第四步，Will（行动）。"那你打算怎么谈判？什么时候开始？"</p>
+            <p>整个对话过程中，刘林没有给出任何答案，她只是通过问题引导Ira自己找到了解决方案。两天后，Ira真的谈成了。</p>
+
+            <h3>第三步：把个人经验沉淀成团队资产</h3>
+            <p>刘林要求Devi和Ira每次完成一个重要项目后，都要写一份《办事攻略》。这个攻略不是长篇大论，而是一页纸的实战手册，包含三个部分：</p>
+            <p>第一部分是问题场景。描述这是一个什么问题，在什么情况下会遇到。</p>
+            <p>第二部分是解决步骤。把解决问题的过程拆成3-5个具体步骤。</p>
+            <p>第三部分是注意事项。列出3-5个关键的坑或经验。</p>
+            <p>这些攻略被收集到共享文档库，并定期组织分享会，让个人经验变成了团队资产。</p>
+
+            <h2>三、结果与复盘</h2>
+            <p>三个月后，刘林的会议时间减少了25%，她终于能从事务中抽身，投入到组织建设和战略上。Devi和Ira的成长非常明显，客服满意度提升，市场活动ROI超出预期。更重要的是，她们开始带动其他人成长，团队的主动性被明显激活。</p>
+            <p>刘林自己在复盘时说："这三个月最难的不是方法，而是心态。我要不断提醒自己，管理者的价值不是解决多少问题，而是建立一个能解决问题的系统。每次我想下场救火的时候，我都会问自己：如果我现在跳出来，团队能学到什么？如果我忍住不跳，最坏的结果是什么？大部分时候，我发现忍住不跳的收益远大于风险。"</p>
+
+            <h2>四、什么时候用这套方法</h2>
+            <p>1. 你的团队里有潜力人才。</p>
+            <p>2. 业务相对稳定，有容错空间。</p>
+            <p>3. 你有至少3个月的转型周期。</p>
+            <p>4. 你愿意承担短期的效率损失。</p>
+            <p>5. 适合管理者个人能力强、团队能力弱的场景。</p>
+        </div>
+    </article>
+
+    <!-- CASE 3 ARTICLE (Mexico) -->
+    <article id="view-case3-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
+        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
+            <button onclick="navigateTo('case3-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+            <h1 class="font-serif text-3xl font-bold text-white mb-6">如何拆掉一堵"隐形的墙"</h1>
+            <p>路璐的管理战场有些特殊，她身在中国，却需要远程驱动墨西哥本地团队的日常协作。随着当地业务日趋成熟，规范化管理被提上日程。但路璐很快就撞上了一堵柔软但坚固的"隐形的墙"。</p>
+            
+            <h2>一、情境与冲突</h2>
+            <p>这堵墙由墨西哥独特的文化特质砌成。较高的权力距离，让下属习惯于等待清晰的指令而非主动发起。高语境的沟通方式，让大家倾向于委婉和间接，避免直接暴露问题。</p>
+            <p>这在工作中演变成一个让路璐头疼的困境。团队内部缺乏主动的横向沟通，许多事务严重依赖某个核心成员的个人能力，却没有形成标准化的流程。大家表面上客气和睦，但协作效率低下。</p>
+            <p>整个团队就像一个安静的会议室，每个人都在自己的位置上默默工作，却缺少了能让项目跑起来的"嗡嗡"的交流声。路璐意识到，她要解决的不是一两个任务的执行力问题，而是要拆掉这堵阻碍团队发挥合力的墙。</p>
+
+            <h2>二、决策与路径</h2>
+            <p>在尝试过开会强调、设立规定、点名批评都无效后，路璐意识到问题的根源不是"大家不愿意沟通"，而是"大家不知道怎么安全地沟通"。她决定放弃直接硬推规定，转而扮演一个建筑师的角色。</p>
+
+            <h3>第一步：私下倾听，建立信任</h3>
+            <p>路璐没有开会宣布新规，而是逐一进行私下沟通。她挑选了6个关键成员，设计了一套沟通框架，包含五个核心问题：</p>
+            <p>1. "你觉得现在团队协作最大的困难是什么？"</p>
+            <p>2. "你希望其他部门怎么配合你？"</p>
+            <p>3. "如果要改进现在的协作方式，你觉得可以怎么做？"</p>
+            <p>4. "你觉得什么会阻碍这些改进？"</p>
+            <p>5. "如果我们一起制定一套新的协作规则，你愿意参与吗？"</p>
+            <p>这一轮私下沟通用了整整两周。她收集到了大量具体的痛点和建议，也建立了信任。</p>
+
+            <h3>第二步：集体共创，达成共识</h3>
+            <p>在充分摸底后，路璐将大家召集到一起，把之前收集到的问题匿名地抛在桌面上。她问："大家看到这些问题，有共鸣吗？"几乎所有人都点头。</p>
+            <p>接下来，她引导团队分组讨论，把问题分类，让小组分别提出解决方案。最后，路璐把大家的共识整理成一份《跨部门协作工单》。这个工单包含六个必填项：任务名称、发起人、配合部门、交付内容、交付时间、优先级。任何跨部门的任务，都必须填写这个工单。这个工单的设计核心是把模糊的沟通变成结构化的信息。</p>
+
+            <h3>第三步：放大正向，塑造文化</h3>
+            <p>流程建立之后，路璐做的第三件事是放大正向行为。她运用了ATM激励法：</p>
+            <p>Acknowledge（认可）：明确指出谁做了什么正确的事。</p>
+            <p>Target alignment（目标校准）：说明这个行为如何帮助达成团队目标。</p>
+            <p>Model（建模）：把这个行为树立为榜样，引导其他人模仿。</p>
+            <p>每当有人主动填写工单、主动更新进度，她都会公开表扬。这就像在沉默的会议室里打开了一扇窗，让大家看到了被鼓励的行为是什么样的。</p>
+
+            <h2>三、结果与复盘</h2>
+            <p>这套组合拳用了大约两个月才见到明显效果。跨部门任务的延期率从之前的40%下降到15%。看板的更新频率从每周平均5次提升到每周25次。大家开始习惯主动更新进度，主动提前暴露问题。</p>
+            <p>路璐在复盘会上分享了她最大的感触："管理很多时候不是去管理'事'，而是去管理'场'。我以前也容易陷入追赶进度的误区，总想着怎么把这个任务推动起来。但这次我意识到，作为管理者，更重要的工作是创造一个让正确的事情能够自然发生的环境。当环境对了，沟通就会自然发生。"</p>
+
+            <h2>四、什么时候用这套方法</h2>
+            <p>1. 面对的是文化或心理层面的沟通障碍，而不是能力问题。</p>
+            <p>2. 团队规模在10-30人之间。</p>
+            <p>3. 你有至少2个月的改变周期。</p>
+            <p>4. 适合高语境、重人际关系的文化。</p>
+            <p>5. 你需要的是"建立机制"而不是"解决单个问题"。</p>
+        </div>
+    </article>
+
+    <!-- CASE 4 ARTICLE (Central Asia) -->
+    <article id="view-case4-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
+        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
+            <button onclick="navigateTo('case4-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+            <h1 class="font-serif text-3xl font-bold text-white mb-6">一次"让对方会做"的跨文化任务辅导</h1>
+            <p>地点是哈萨克斯坦的阿拉木图。作为中亚区域PM，李长玥正带领团队在当地从零开始搭建子公司。她手上有一项关键任务：把产品前台、后台和官网的内容精准翻译成俄语和哈萨克语。</p>
+            <p>这项任务交给了一位本地业务支持同事。对方态度积极，但很快就陷入了混乱。面对长长的任务清单，不知从哪下手，迟迟不敢动工。提交的初稿问题不少，项目进度也被拖慢。</p>
+            
+            <h2>一、情境与冲突</h2>
+            <p>李长玥陷入两难：她既要保证上线时限，又不能让这个关键成员掉队。要是她亲自下场把活干了，短期能解燃眉之急，但团队能力原地踏步。要是光靠催促，既解决不了问题，还可能伤了对方积极性。</p>
+            <p>更重要的是，李长玥给自己设了一个标准：这次辅导的成功，不是"这一次任务能完成"，而是"下一次遇到类似任务，他能独立搞定"。换句话说，她要做的是能力培养，而不只是救火。</p>
+
+            <h2>二、决策与路径</h2>
+            <p>李长玥先用"意愿三角"做了判断：对方态度端正，基础能力也在。问题出在方法层面，即"不知道怎么把任务拆解成可执行的步骤"。她决定把重心从"推动任务"转向"搭建路径"。</p>
+
+            <h3>第一步，换掉评判视角</h3>
+            <p>她没有停留在"他怎么连这都搞不定"的情绪里，而是把问题变成可拆解的具体卡点："他是不知道从哪开始？还是不知道标准是什么？还是担心做错？"</p>
+
+            <h3>第二步，用"前馈清单"引导思考</h3>
+            <p>她用一连串问题帮对方自己理出思路：</p>
+            <p>"你知道我们为什么要做这件事吗？"（对齐背景和意义）</p>
+            <p>"我们的目标标准是什么？"（明确交付标准，让对方复述）</p>
+            <p>"这里面最关键的几步是什么？"（建立优先级意识）</p>
+            <p>"你觉得会遇到哪些困难？"（提前发现风险）</p>
+            <p>"我们多久同步一次？"（设定反馈频率）</p>
+            <p>这套问题的设计逻辑是：从大局到细节，从目标到路径，从预判到反馈。</p>
+
+            <h3>第三步，前置工具支撑</h3>
+            <p>她提前准备了《核心术语表》《翻译协作流程图》《注意事项清单》，就像给对方发了一套武器库。她传递出的信号是："我相信你能搞定，这些工具是为了让你少走弯路。"</p>
+
+            <h3>第四步，用反述确认代替命令</h3>
+            <p>她常问："你对这个流程的理解是什么？""你觉得难点在哪？"让对方复述和表达，而不是单纯接收命令。这样一来，沟通变成了双向共识，而非单向下达。</p>
+
+            <h2>三、结果与复盘</h2>
+            <p>这种搭桥策略立刻见效。那位业务支持同事在理清路径并拿到工具之后，焦虑明显缓解，开始有条不紊地推进工作。最终，他按时完成了翻译任务，返工率大幅下降。</p>
+            <p>更重要的是，在复盘时他第一次说出："这次我终于看清了整个任务是怎么运转的，也知道该怎么和别人配合了。以后遇到复杂任务，我也有信心能搞定。"</p>
+            <p>这句话揭示了李长玥方法的真正价值。她做的不是帮成员完成这一次任务，而是让成员获得了一种"看见全貌"的能力。这种能力一旦建立，就可以迁移到其他任务上。</p>
+
+            <h2>四、什么时候用这套方法</h2>
+            <p>1. 对方意愿端正，基础能力具备，卡在方法层面。</p>
+            <p>2. 任务有明确的流程和标准。</p>
+            <p>3. 你有时间做一次深度辅导。</p>
+            <p>4. 跨文化或新人场景特别适用。</p>
+        </div>
+    </article>
+
+    <script>
+        function navigateTo(viewId) {
+            document.querySelectorAll('.view-section, #view-home').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('view-' + viewId);
+            if(target) { target.classList.remove('hidden'); window.scrollTo(0, 0); }
+        }
+        function selectOption(btn, insightId) {
+            const container = btn.parentElement;
+            const buttons = container.querySelectorAll('button');
+            buttons.forEach(b => {
+                b.classList.remove('bg-slate-800', 'border-surfin-blue', 'ring-1', 'ring-surfin-blue');
+                b.classList.add('bg-slate-800/50', 'opacity-50');
+                b.querySelector('div').classList.remove('bg-surfin-blue', 'border-transparent', 'bg-indo-gold', 'bg-mexico-pink', 'bg-central-blue');
+            });
+            btn.classList.remove('bg-slate-800/50', 'opacity-50');
+            btn.classList.add('bg-slate-800', 'ring-1', 'ring-white/20');
+            
+            // Color logic
+            if(btn.innerHTML.includes('border-surfin-blue')) { btn.classList.add('border-surfin-blue'); btn.querySelector('div').classList.add('bg-surfin-blue'); }
+            else if(btn.innerHTML.includes('border-indo-gold')) { btn.classList.add('border-indo-gold'); btn.querySelector('div').classList.add('bg-indo-gold'); }
+            else if(btn.innerHTML.includes('border-mexico-pink')) { btn.classList.add('border-mexico-pink'); btn.querySelector('div').classList.add('bg-mexico-pink'); }
+            else if(btn.innerHTML.includes('border-central-blue')) { btn.classList.add('border-central-blue'); btn.querySelector('div').classList.add('bg-central-blue'); }
+
+            document.getElementById(insightId).classList.remove('hidden');
+            document.getElementById(insightId).classList.add('animate-fade-in');
+        }
+    </script>
+</body>
+</html>
