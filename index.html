@@ -6,6 +6,8 @@
     <title>Surfin-PM管理训练营优秀案例库</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <script>
@@ -55,6 +57,16 @@
             min-height: 100vh;
         }
 
+        @media print {
+            body { background: #ffffff; color: #0f172a; }
+            .glass-card, .article-content { background: #ffffff !important; border-color: #cbd5e1 !important; box-shadow: none !important; }
+            .article-content { max-width: 960px !important; margin: 0 auto !important; padding: 1.5in 1.25in !important; color: #0f172a; }
+            .article-content p, .article-content h1, .article-content h2, .article-content h3, .article-content strong { color: #0f172a !important; }
+            nav, .fixed, .print-hide, .bg-silhouette { display: none !important; }
+            .note-card { border: 1px solid #cbd5e1 !important; background: #f8fafc !important; color: #0f172a !important; }
+            .note-card .note-title, .note-card .note-steps { color: #0f172a !important; }
+        }
+
         .glass-card {
             background: rgba(30, 41, 59, 0.7); /* 加深背景以提高文字可读性 */
             backdrop-filter: blur(12px);
@@ -63,12 +75,25 @@
         }
 
         /* 阅读模式排版 */
-        .article-content p { margin-bottom: 1.8em; line-height: 1.8; color: #cbd5e1; font-size: 1.05rem; text-align: justify; font-weight: 300; }
-        .article-content h2 { font-family: 'Noto Serif SC', serif; font-size: 1.4rem; font-weight: 600; color: #fff; margin-top: 2.5em; margin-bottom: 1em; display: flex; align-items: center; }
+        .article-content p { margin-bottom: 1.5em; line-height: 1.9; color: #cfd8e3; font-size: clamp(1rem, 0.94rem + 0.25vw, 1.2rem); text-align: justify; font-weight: 300; }
+        .article-content h2 { font-family: 'Noto Serif SC', serif; font-size: clamp(1.3rem, 1.15rem + 0.35vw, 1.7rem); font-weight: 600; color: #fff; margin-top: 2.3em; margin-bottom: 1em; display: flex; align-items: center; }
         .article-content h2::before { content: ''; display: inline-block; width: 4px; height: 1em; background-color: #0ea5e9; margin-right: 0.75rem; border-radius: 2px; }
-        .article-content h3 { font-size: 1.15rem; font-weight: 500; color: #e2e8f0; margin-top: 2em; margin-bottom: 0.8em; }
+        .article-content h3 { font-size: clamp(1.1rem, 1rem + 0.2vw, 1.35rem); font-weight: 500; color: #e2e8f0; margin-top: 1.8em; margin-bottom: 0.8em; }
         .article-content strong { color: #38bdf8; font-weight: 500; }
-        .article-quote { border-left: 3px solid #0ea5e9; padding-left: 1rem; margin: 2rem 0; color: #94a3b8; font-style: italic; background: rgba(14, 165, 233, 0.05); padding: 1rem; border-radius: 0 8px 8px 0; }
+        .article-quote { border-left: 3px solid #0ea5e9; padding-left: 1.25rem; margin: 2rem 0; color: #94a3b8; font-style: italic; background: rgba(14, 165, 233, 0.08); padding: 1.25rem; border-radius: 0 12px 12px 0; }
+
+        .note-card { border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem; line-height: 1.6; border: 1px solid rgba(255,255,255,0.08); }
+        .note-card .note-title { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+        .note-card .note-steps { font-size: 0.9rem; color: rgba(203,213,225,0.85); margin-top: 4px; }
+        .note-kenya { background: rgba(191, 10, 48, 0.2); border-color: rgba(191, 10, 48, 0.5); color: #f8fafc; }
+        .note-kenya .note-title { color: #F87171; }
+        .note-indo { background: rgba(212, 175, 55, 0.15); border-color: rgba(212, 175, 55, 0.55); color: #fefce8; }
+        .note-indo .note-title { color: #FCD34D; }
+        .note-indo .note-steps { color: #fefce8; opacity: 0.95; }
+        .note-mexico { background: rgba(228, 0, 124, 0.18); border-color: rgba(228, 0, 124, 0.5); color: #f8fafc; }
+        .note-mexico .note-title { color: #F472B6; }
+        .note-central { background: rgba(0, 175, 202, 0.18); border-color: rgba(0, 175, 202, 0.45); color: #f8fafc; }
+        .note-central .note-title { color: #67E8F9; }
 
         /* 背景纹理 (高辨识度剪影) */
         .bg-silhouette {
@@ -99,7 +124,7 @@
             </div>
         </nav>
 
-        <header class="max-w-4xl mx-auto px-6 pt-12 pb-16 text-center animate-slide-up">
+        <header class="max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-6 pt-12 pb-16 text-center animate-slide-up">
             <h1 class="font-serif text-3xl md:text-5xl font-bold mb-6 leading-tight text-white">
                 Surfin-PM管理训练营<br>优秀案例库
             </h1>
@@ -108,56 +133,9 @@
             </p>
         </header>
 
-        <main class="max-w-5xl mx-auto px-4 pb-24 grid grid-cols-1 md:grid-cols-2 gap-6 animate-slide-up" style="animation-delay: 0.1s">
-            <!-- 卡片 1: 肯尼亚 -->
-            <div onclick="navigateTo('case1-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-kenya-red hover:bg-slate-800/50 transition-colors">
-                <div class="bg-silhouette bg-kenya opacity-10"></div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] font-bold text-kenya-red border border-kenya-red/30 px-2 py-0.5 rounded">CASE 01 · KENYA</span>
-                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-white mb-2">高风险环境下的<br>管理实践</h3>
-                <p class="text-xs text-slate-400">外部暴乱 vs 内部红线，如何设计第三套生存系统？</p>
-                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">B</div>Bob · 危机管理</div>
-            </div>
-
-            <!-- 卡片 2: 印尼 -->
-            <div onclick="navigateTo('case2-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-indo-gold hover:bg-slate-800/50 transition-colors">
-                <div class="bg-silhouette bg-indo opacity-10"></div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] font-bold text-indo-gold border border-indo-gold/30 px-2 py-0.5 rounded">CASE 02 · INDONESIA</span>
-                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-white mb-2">从超级PM到指挥官的<br>转型之路</h3>
-                <p class="text-xs text-slate-400">累死累活团队却长不大？用授权协议把能力复制给团队。</p>
-                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">L</div>Liu Lin · 授权</div>
-            </div>
-
-            <!-- 卡片 3: 墨西哥 -->
-            <div onclick="navigateTo('case3-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-mexico-pink hover:bg-slate-800/50 transition-colors">
-                <div class="bg-silhouette bg-mexico opacity-10"></div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] font-bold text-mexico-pink border border-mexico-pink/30 px-2 py-0.5 rounded">CASE 03 · MEXICO</span>
-                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-white mb-2">如何拆掉一堵<br>“隐形的墙”</h3>
-                <p class="text-xs text-slate-400">面对“非必要不沟通”的文化墙，如何让协作流动起来？</p>
-                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">R</div>Lu Lu · 跨文化</div>
-            </div>
-
-            <!-- 卡片 4: 中亚 -->
-            <div onclick="navigateTo('case4-summary')" class="glass-card group rounded-2xl p-6 relative overflow-hidden cursor-pointer border-l-4 border-central-blue hover:bg-slate-800/50 transition-colors">
-                <div class="bg-silhouette bg-central opacity-10"></div>
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] font-bold text-central-blue border border-central-blue/30 px-2 py-0.5 rounded">CASE 04 · CENTRAL ASIA</span>
-                    <i class="ph-bold ph-arrow-right text-slate-500 group-hover:text-white"></i>
-                </div>
-                <h3 class="text-xl font-serif font-bold text-white mb-2">一次“让对方会做”的<br>跨文化任务辅导</h3>
-                <p class="text-xs text-slate-400">新人不敢动？用前馈清单和工具包，把“下指令”变成“搭桥梁”。</p>
-                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500"><div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">L</div>Li Changyue · 辅导</div>
-            </div>
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 md:px-6 pb-24 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-8 animate-slide-up" style="animation-delay: 0.1s" id="case-grid">
         </main>
-        <footer class="text-center pb-8 text-[10px] text-slate-600 font-mono"><p>&copy; 2025 Surfin Learning & Development. Internal Use Only.</p></footer>
+        <footer class="text-center pb-8 text-[10px] text-slate-600 font-mono"><p>人力行政部-学习发展出品</p></footer>
     </div>
 
 
@@ -166,9 +144,9 @@
     <!-- ====================================================================================== -->
     <div id="view-case1-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-kenya opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 01</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 01</div></div></nav>
         
-        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <!-- Header -->
             <header class="mb-8 animate-slide-up">
                 <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-kenya-red/20 text-kenya-red border border-kenya-red/30">危机管理</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-kenya-green/20 text-kenya-green border border-kenya-green/30">肯尼亚</span></div>
@@ -246,6 +224,8 @@
                 </div>
             </section>
 
+            <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
+
             <!-- 底部按钮 -->
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
                 <button onclick="navigateTo('case1-article')" class="w-full max-w-md bg-surfin-blue hover:bg-blue-500 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
@@ -259,9 +239,9 @@
     <!-- ====================================================================================== -->
     <div id="view-case2-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-indo opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 02</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 02</div></div></nav>
         
-        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <header class="mb-8 animate-slide-up">
                 <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indo-gold/20 text-indo-gold border border-indo-gold/30">任务授权</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">印尼</span></div>
                 <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">从超级PM到指挥官的<br>转型之路</h1>
@@ -326,6 +306,8 @@
                 </div>
             </section>
 
+            <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
+
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
                 <button onclick="navigateTo('case2-article')" class="w-full max-w-md bg-indo-gold hover:bg-amber-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
@@ -338,9 +320,9 @@
     <!-- ====================================================================================== -->
     <div id="view-case3-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-mexico opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 03</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 03</div></div></nav>
         
-        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <header class="mb-8 animate-slide-up">
                 <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-mexico-pink/20 text-mexico-pink border border-mexico-pink/30">跨文化</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">墨西哥</span></div>
                 <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">如何拆掉一堵<br>“隐形的墙”</h1>
@@ -402,6 +384,8 @@
                 </div>
             </section>
 
+            <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
+
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
                 <button onclick="navigateTo('case3-article')" class="w-full max-w-md bg-mexico-pink hover:bg-pink-600 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
@@ -414,9 +398,9 @@
     <!-- ====================================================================================== -->
     <div id="view-case4-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-central opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-3xl mx-auto glass-card rounded-full px-4 py-3 flex justify-between items-center"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 04</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 04</div></div></nav>
         
-        <main class="max-w-3xl mx-auto px-4 pt-24 pb-32 relative z-10">
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <header class="mb-8 animate-slide-up">
                 <div class="flex items-center gap-2 mb-3"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-central-blue/20 text-central-blue border border-central-blue/30">辅导</span><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600">中亚</span></div>
                 <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">一次“让对方会做”的<br>跨文化任务辅导</h1>
@@ -466,6 +450,8 @@
                 </div>
             </section>
 
+            <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
+
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
                 <button onclick="navigateTo('case4-article')" class="w-full max-w-md bg-central-blue hover:bg-cyan-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
@@ -479,9 +465,19 @@
 
     <!-- CASE 1 ARTICLE (Kenya) -->
     <article id="view-case1-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
-        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
-            <button onclick="navigateTo('case1-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-            <h1 class="font-serif text-3xl font-bold text-white mb-6">肯尼亚高风险环境下的管理实践</h1>
+        <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
+            <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('case1-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">肯尼亚高风险环境下的管理实践</h1>
+                <div class="note-card note-kenya mb-8">
+                    <div class="note-title">要点速记</div>
+                    <p class="m-0">暴乱与合规双重高压，用“战时系统”保证安全与效率。</p>
+                    <p class="m-0">激励+红线并行，把合规变成团队的荣誉与习惯。</p>
+                    <div class="note-steps">三步行动：1) 发居家作战地图；2) 设合规之星+零容忍清单；3) 建立建设性批评流程。</div>
+                </div>
             <p>肯尼亚，是刘博奋斗了五年的战场。作为项目经理，他管理着一个近三百名当地员工组成的业务团队，在东非这个政治局势复杂、经济脆弱的市场环境中，为当地民众提供小额信贷服务。这项业务本身极具价值，但也意味着团队的每一天都如履薄冰。</p>
             
             <h2>一、情境与冲突</h2>
@@ -517,21 +513,33 @@
             <p>比业务结果更重要的是团队的变化。刘博在复盘会上问过一位催收组长："你觉得这一年最大的变化是什么？"组长说："以前我们觉得合规是麻烦，现在我们觉得合规是本事。以前是公司逼着我们合规，现在是我们自己想做得更专业。"</p>
             <p>另一位获得过两次"合规之星"的催收员说："以前我压力大的时候，会想'管他的，先把钱要回来再说'。现在我会想'有没有既合规又有效的办法'。这不是因为我怕被罚，而是因为我发现这样做真的能让我走得更远。"</p>
 
-            <h2>四、什么时候用这套方法</h2>
-            <p>刘博的"战时系统+文化塑造"不是万能的，它有明确的适用边界。</p>
-            <p>1. 面对的是高频、可预判的风险（如游行）。</p>
-            <p>2. 你有足够的管理权限和资源（能调配资源、设立奖励）。</p>
-            <p>3. 团队规模在50人以上（系统化收益大于成本）。</p>
-            <p>4. 文化塑造需要至少3个月的周期（不能急功近利）。</p>
-            <p>5. 适合"高压力+高风险"的业务场景。</p>
+                <h2>四、什么时候用这套方法</h2>
+                <p>刘博的"战时系统+文化塑造"不是万能的，它有明确的适用边界。</p>
+                <p>1. 面对的是高频、可预判的风险（如游行）。</p>
+                <p>2. 你有足够的管理权限和资源（能调配资源、设立奖励）。</p>
+                <p>3. 团队规模在50人以上（系统化收益大于成本）。</p>
+                <p>4. 文化塑造需要至少3个月的周期（不能急功近利）。</p>
+                <p>5. 适合"高压力+高风险"的业务场景。</p>
+                <div class="text-center text-[10px] text-slate-600 font-mono mt-10">人力行政部-学习发展出品</div>
+            </div>
         </div>
     </article>
 
     <!-- CASE 2 ARTICLE (Indonesia) -->
     <article id="view-case2-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
-        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
-            <button onclick="navigateTo('case2-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-            <h1 class="font-serif text-3xl font-bold text-white mb-6">从超级PM到指挥官的转型之路</h1>
+        <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
+            <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('case2-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">从超级PM到指挥官的转型之路</h1>
+                <div class="note-card note-indo mb-8">
+                    <div class="note-title">要点速记</div>
+                    <p class="m-0">用“结构化授权+教练式辅导”把个人能力复制成团队能力。</p>
+                    <p class="m-0">把经验沉淀为一页纸攻略，团队自我迭代。</p>
+                    <div class="note-steps">三步行动：1) 签授权协议（范围/目标/权限/支持/容错）；2) 用GROW问答带思考；3) 每事一页攻略沉淀。</div>
+                </div>
             <p>在快速增长的印尼市场，刘林承担了一个几乎"不可能"的角色。她既是核心支付业务的PM，同时还带着数字营销、销售、HR和客服四个团队。就像一只八爪鱼，她一个人支撑着由本地年轻人组成的高速团队。</p>
             <p>但随着业务扩张，她的时间和精力被一点点榨干，她的经验和能力也无法快速传递给团队。问题很快暴露出来。</p>
 
@@ -571,20 +579,32 @@
             <p>三个月后，刘林的会议时间减少了25%，她终于能从事务中抽身，投入到组织建设和战略上。Devi和Ira的成长非常明显，客服满意度提升，市场活动ROI超出预期。更重要的是，她们开始带动其他人成长，团队的主动性被明显激活。</p>
             <p>刘林自己在复盘时说："这三个月最难的不是方法，而是心态。我要不断提醒自己，管理者的价值不是解决多少问题，而是建立一个能解决问题的系统。每次我想下场救火的时候，我都会问自己：如果我现在跳出来，团队能学到什么？如果我忍住不跳，最坏的结果是什么？大部分时候，我发现忍住不跳的收益远大于风险。"</p>
 
-            <h2>四、什么时候用这套方法</h2>
-            <p>1. 你的团队里有潜力人才。</p>
-            <p>2. 业务相对稳定，有容错空间。</p>
-            <p>3. 你有至少3个月的转型周期。</p>
-            <p>4. 你愿意承担短期的效率损失。</p>
-            <p>5. 适合管理者个人能力强、团队能力弱的场景。</p>
+                <h2>四、什么时候用这套方法</h2>
+                <p>1. 你的团队里有潜力人才。</p>
+                <p>2. 业务相对稳定，有容错空间。</p>
+                <p>3. 你有至少3个月的转型周期。</p>
+                <p>4. 你愿意承担短期的效率损失。</p>
+                <p>5. 适合管理者个人能力强、团队能力弱的场景。</p>
+                <div class="text-center text-[10px] text-slate-600 font-mono mt-10">人力行政部-学习发展出品</div>
+            </div>
         </div>
     </article>
 
     <!-- CASE 3 ARTICLE (Mexico) -->
     <article id="view-case3-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
-        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
-            <button onclick="navigateTo('case3-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-            <h1 class="font-serif text-3xl font-bold text-white mb-6">如何拆掉一堵"隐形的墙"</h1>
+        <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
+            <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('case3-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">如何拆掉一堵"隐形的墙"</h1>
+                <div class="note-card note-mexico mb-8">
+                    <div class="note-title">要点速记</div>
+                    <p class="m-0">高语境团队的沉默墙，用“私下倾听+共创工单”打通协作。</p>
+                    <p class="m-0">持续表扬正向行为，让沟通变成习惯。</p>
+                    <div class="note-steps">三步行动：1) 私下 5 问摸底；2) 共创协作工单并执行；3) ATM 表扬放大主动沟通。</div>
+                </div>
             <p>路璐的管理战场有些特殊，她身在中国，却需要远程驱动墨西哥本地团队的日常协作。随着当地业务日趋成熟，规范化管理被提上日程。但路璐很快就撞上了一堵柔软但坚固的"隐形的墙"。</p>
             
             <h2>一、情境与冲突</h2>
@@ -619,20 +639,32 @@
             <p>这套组合拳用了大约两个月才见到明显效果。跨部门任务的延期率从之前的40%下降到15%。看板的更新频率从每周平均5次提升到每周25次。大家开始习惯主动更新进度，主动提前暴露问题。</p>
             <p>路璐在复盘会上分享了她最大的感触："管理很多时候不是去管理'事'，而是去管理'场'。我以前也容易陷入追赶进度的误区，总想着怎么把这个任务推动起来。但这次我意识到，作为管理者，更重要的工作是创造一个让正确的事情能够自然发生的环境。当环境对了，沟通就会自然发生。"</p>
 
-            <h2>四、什么时候用这套方法</h2>
-            <p>1. 面对的是文化或心理层面的沟通障碍，而不是能力问题。</p>
-            <p>2. 团队规模在10-30人之间。</p>
-            <p>3. 你有至少2个月的改变周期。</p>
-            <p>4. 适合高语境、重人际关系的文化。</p>
-            <p>5. 你需要的是"建立机制"而不是"解决单个问题"。</p>
+                <h2>四、什么时候用这套方法</h2>
+                <p>1. 面对的是文化或心理层面的沟通障碍，而不是能力问题。</p>
+                <p>2. 团队规模在10-30人之间。</p>
+                <p>3. 你有至少2个月的改变周期。</p>
+                <p>4. 适合高语境、重人际关系的文化。</p>
+                <p>5. 你需要的是"建立机制"而不是"解决单个问题"。</p>
+                <div class="text-center text-[10px] text-slate-600 font-mono mt-10">人力行政部-学习发展出品</div>
+            </div>
         </div>
     </article>
 
     <!-- CASE 4 ARTICLE (Central Asia) -->
     <article id="view-case4-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
-        <div class="max-w-2xl mx-auto px-6 py-12 article-content pb-32">
-            <button onclick="navigateTo('case4-summary')" class="text-slate-400 text-xs mb-8 hover:text-white flex items-center gap-1"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-            <h1 class="font-serif text-3xl font-bold text-white mb-6">一次"让对方会做"的跨文化任务辅导</h1>
+        <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
+            <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('case4-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">一次"让对方会做"的跨文化任务辅导</h1>
+                <div class="note-card note-central mb-8">
+                    <div class="note-title">要点速记</div>
+                    <p class="m-0">对方法卡壳的新人，用前馈清单引路，用工具降低焦虑。</p>
+                    <p class="m-0">让对方反述确认，把指令变成共识。</p>
+                    <div class="note-steps">三步行动：1) 前馈提问对齐目标/标准/难点；2) 提前发“术语表+流程图+注意事项”; 3) 反述确认定期同步。</div>
+                </div>
             <p>地点是哈萨克斯坦的阿拉木图。作为中亚区域PM，李长玥正带领团队在当地从零开始搭建子公司。她手上有一项关键任务：把产品前台、后台和官网的内容精准翻译成俄语和哈萨克语。</p>
             <p>这项任务交给了一位本地业务支持同事。对方态度积极，但很快就陷入了混乱。面对长长的任务清单，不知从哪下手，迟迟不敢动工。提交的初稿问题不少，项目进度也被拖慢。</p>
             
@@ -666,19 +698,150 @@
             <p>更重要的是，在复盘时他第一次说出："这次我终于看清了整个任务是怎么运转的，也知道该怎么和别人配合了。以后遇到复杂任务，我也有信心能搞定。"</p>
             <p>这句话揭示了李长玥方法的真正价值。她做的不是帮成员完成这一次任务，而是让成员获得了一种"看见全貌"的能力。这种能力一旦建立，就可以迁移到其他任务上。</p>
 
-            <h2>四、什么时候用这套方法</h2>
-            <p>1. 对方意愿端正，基础能力具备，卡在方法层面。</p>
-            <p>2. 任务有明确的流程和标准。</p>
-            <p>3. 你有时间做一次深度辅导。</p>
-            <p>4. 跨文化或新人场景特别适用。</p>
+                <h2>四、什么时候用这套方法</h2>
+                <p>1. 对方意愿端正，基础能力具备，卡在方法层面。</p>
+                <p>2. 任务有明确的流程和标准。</p>
+                <p>3. 你有时间做一次深度辅导。</p>
+                <p>4. 跨文化或新人场景特别适用。</p>
+                <div class="text-center text-[10px] text-slate-600 font-mono mt-10">人力行政部-学习发展出品</div>
+            </div>
         </div>
     </article>
 
     <script>
+        const casesData = [
+            {
+                viewId: 'case1-summary',
+                caseNumber: 'CASE 01 · KENYA',
+                borderClass: 'border-kenya-red',
+                labelClass: 'text-kenya-red border border-kenya-red/30',
+                silhouetteClass: 'bg-kenya',
+                title: '高风险环境下的<br>管理实践',
+                description: '外部暴乱 vs 内部红线，如何设计第三套生存系统？',
+                avatarInitial: 'B',
+                author: 'Bob · 危机管理'
+            },
+            {
+                viewId: 'case2-summary',
+                caseNumber: 'CASE 02 · INDONESIA',
+                borderClass: 'border-indo-gold',
+                labelClass: 'text-indo-gold border border-indo-gold/30',
+                silhouetteClass: 'bg-indo',
+                title: '从超级PM到指挥官的<br>转型之路',
+                description: '累死累活团队却长不大？用授权协议把能力复制给团队。',
+                avatarInitial: 'L',
+                author: 'Liu Lin · 授权'
+            },
+            {
+                viewId: 'case3-summary',
+                caseNumber: 'CASE 03 · MEXICO',
+                borderClass: 'border-mexico-pink',
+                labelClass: 'text-mexico-pink border border-mexico-pink/30',
+                silhouetteClass: 'bg-mexico',
+                title: '如何拆掉一堵<br>“隐形的墙”',
+                description: '面对“非必要不沟通”的文化墙，如何让协作流动起来？',
+                avatarInitial: 'R',
+                author: 'Lu Lu · 跨文化'
+            },
+            {
+                viewId: 'case4-summary',
+                caseNumber: 'CASE 04 · CENTRAL ASIA',
+                borderClass: 'border-central-blue',
+                labelClass: 'text-central-blue border border-central-blue/30',
+                silhouetteClass: 'bg-central',
+                title: '一次“让对方会做”的<br>跨文化任务辅导',
+                description: '新人不敢动？用前馈清单和工具包，把“下指令”变成“搭桥梁”。',
+                avatarInitial: 'L',
+                author: 'Li Changyue · 辅导'
+            },
+            {
+                caseNumber: 'CASE 05 · GLOBAL',
+                borderClass: 'border-white/10',
+                labelClass: 'text-slate-300 border border-white/20',
+                silhouetteClass: 'bg-kenya',
+                title: '下一批优秀案例即将上线',
+                description: '新地区的实战故事正在整理中，敬请期待。',
+                avatarInitial: '+',
+                author: 'Surfin 团队 · 内测进行中',
+                comingSoon: true
+            },
+            {
+                caseNumber: 'CASE 06 · TBD',
+                borderClass: 'border-white/10',
+                labelClass: 'text-slate-300 border border-white/20',
+                silhouetteClass: 'bg-mexico',
+                title: '敬请期待 · 新故事正在赶来',
+                description: '后续批次的优秀管理案例会第一时间上架在这里。',
+                avatarInitial: '…',
+                author: '等待下一位出场的PM',
+                comingSoon: true
+            }
+        ];
+
+        function renderCaseGrid() {
+            const grid = document.getElementById('case-grid');
+            if (!grid) return;
+            grid.innerHTML = casesData.map(card => {
+                const isComingSoon = Boolean(card.comingSoon);
+                const silhouetteClass = card.silhouetteClass ? ` ${card.silhouetteClass}` : '';
+                const iconClass = isComingSoon ? 'ph-bold ph-clock text-lg text-slate-400' : 'ph-bold ph-arrow-right text-lg text-slate-400 group-hover:text-white';
+                const overlay = isComingSoon ? '<div class="absolute inset-0 bg-slate-950/40 backdrop-blur-sm flex items-center justify-center text-xs sm:text-sm text-slate-100 tracking-wide">内容整理中 · 敬请期待</div>' : '';
+                const cardClasses = [
+                    'glass-card group rounded-[26px] p-5 sm:p-6 lg:p-7 relative overflow-hidden border-l-4 shadow-xl',
+                    card.borderClass,
+                    'transition-all duration-300 min-h-[220px] xl:min-h-[240px]',
+                    isComingSoon ? 'cursor-not-allowed opacity-60 hover:bg-slate-800/50' : 'cursor-pointer hover:bg-slate-800/50 hover:-translate-y-0.5'
+                ].join(' ');
+                const actionAttr = (!isComingSoon && card.viewId) ? ` onclick="navigateTo('${card.viewId}')"` : '';
+                return `
+                    <div${actionAttr} class="${cardClasses}">
+                        <div class="bg-silhouette${silhouetteClass} opacity-10"></div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded tracking-[0.2em] ${card.labelClass}">${card.caseNumber}</span>
+                            <i class="${iconClass}"></i>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-white/95 leading-snug mb-3">${card.title}</h3>
+                        <p class="text-sm md:text-base text-slate-300/90 leading-relaxed">${card.description}</p>
+                        <div class="mt-5 flex items-center gap-2 text-xs md:text-sm text-slate-400">
+                            <div class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-white">${card.avatarInitial}</div>
+                            ${card.author}
+                        </div>
+                        ${overlay}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        renderCaseGrid();
+
         function navigateTo(viewId) {
             document.querySelectorAll('.view-section, #view-home').forEach(el => el.classList.add('hidden'));
             const target = document.getElementById('view-' + viewId);
             if(target) { target.classList.remove('hidden'); window.scrollTo(0, 0); }
+        }
+        async function printArticle(btn) {
+            const content = btn.closest('.article-content');
+            if (!content || !window.html2canvas || !window.jspdf) { window.print(); return; }
+            const { jsPDF } = window.jspdf;
+            const heading = (content.querySelector('h1')?.innerText || 'case').replace(/\s+/g, '_');
+            const canvas = await html2canvas(content, { scale: 2, useCORS: true, windowWidth: document.documentElement.scrollWidth });
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+            const imgWidth = pageWidth;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 0;
+            pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+            while (heightLeft > 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+            pdf.save(`${heading}.pdf`);
         }
         function selectOption(btn, insightId) {
             const container = btn.parentElement;
