@@ -2,7 +2,7 @@
 <html lang="zh-CN" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surfin-PM管理训练营优秀案例库</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -144,7 +144,7 @@
     <!-- ====================================================================================== -->
     <div id="view-case1-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-kenya opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 01</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button data-nav="home" class="nav-btn flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 01</div></div></nav>
         
         <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <!-- Header -->
@@ -160,8 +160,8 @@
                     <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：你会怎么选？</h3>
                     <p class="text-sm text-slate-400 mb-4 leading-relaxed">外部暴乱通勤危险，内部合规收紧易被开除。业务不能停，人命输不起。</p>
                     <div class="space-y-2" id="decision-box-c1">
-                        <button onclick="selectOption(this, 'insight-c1')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-surfin-blue flex-shrink-0"></div><span>保安全：全员停工，申请下调指标</span></button>
-                        <button onclick="selectOption(this, 'insight-c1')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-surfin-blue flex-shrink-0"></div><span>保业绩：重赏之下必有勇夫，默许灰色手段</span></button>
+                        <button data-color="surfin-blue" data-insight="insight-c1" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-surfin-blue flex-shrink-0"></div><span>保安全：全员停工，申请下调指标</span></button>
+                        <button data-color="surfin-blue" data-insight="insight-c1" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-surfin-blue flex-shrink-0"></div><span>保业绩：重赏之下必有勇夫，默许灰色手段</span></button>
                     </div>
                     <div id="insight-c1" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-surfin-blue font-medium mb-1">Bob 的破局思路：</p><p class="text-xs text-slate-400">这不是单选题。真正的管理是在混乱中建立一套系统，既保护团队，又维持运转。</p></div>
                 </div>
@@ -228,7 +228,7 @@
 
             <!-- 底部按钮 -->
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
-                <button onclick="navigateTo('case1-article')" class="w-full max-w-md bg-surfin-blue hover:bg-blue-500 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+                <button data-nav="case1-article" class="nav-btn w-full max-w-md bg-surfin-blue hover:bg-blue-500 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
         </main>
     </div>
@@ -239,7 +239,7 @@
     <!-- ====================================================================================== -->
     <div id="view-case2-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-indo opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 02</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button data-nav="home" class="nav-btn flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 02</div></div></nav>
         
         <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <header class="mb-8 animate-slide-up">
@@ -253,8 +253,8 @@
                     <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：自己干还是放手？</h3>
                     <p class="text-sm text-slate-400 mb-4 leading-relaxed">身兼数职，团队依赖。自己干会累死，放手怕失控。怎么选？</p>
                     <div class="space-y-2" id="decision-box-c2">
-                        <button onclick="selectOption(this, 'insight-c2')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-indo-gold flex-shrink-0"></div><span>A. 自己扛，保证短期效率</span></button>
-                        <button onclick="selectOption(this, 'insight-c2')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-indo-gold flex-shrink-0"></div><span>B. 直接放手，优胜劣汰</span></button>
+                        <button data-color="indo-gold" data-insight="insight-c2" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-indo-gold flex-shrink-0"></div><span>A. 自己扛，保证短期效率</span></button>
+                        <button data-color="indo-gold" data-insight="insight-c2" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-indo-gold flex-shrink-0"></div><span>B. 直接放手，优胜劣汰</span></button>
                     </div>
                     <div id="insight-c2" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-indo-gold font-medium mb-1">刘林的破局思路：</p><p class="text-xs text-slate-400">通过“结构化授权”和“教练式辅导”，把个人能力复制给团队，建立独立作战系统。</p></div>
                 </div>
@@ -309,7 +309,7 @@
             <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
 
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
-                <button onclick="navigateTo('case2-article')" class="w-full max-w-md bg-indo-gold hover:bg-amber-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+                <button data-nav="case2-article" class="nav-btn w-full max-w-md bg-indo-gold hover:bg-amber-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
         </main>
     </div>
@@ -320,7 +320,7 @@
     <!-- ====================================================================================== -->
     <div id="view-case3-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-mexico opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 03</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button data-nav="home" class="nav-btn flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 03</div></div></nav>
         
         <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <header class="mb-8 animate-slide-up">
@@ -334,8 +334,8 @@
                     <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：硬推还是放任？</h3>
                     <p class="text-sm text-slate-400 mb-4 leading-relaxed">文化导致“非必要不沟通”，协作如死水。硬推规定无效，放任则效率低。</p>
                     <div class="space-y-2" id="decision-box-c3">
-                        <button onclick="selectOption(this, 'insight-c3')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-mexico-pink flex-shrink-0"></div><span>A. 强制规定，不执行就罚</span></button>
-                        <button onclick="selectOption(this, 'insight-c3')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-mexico-pink flex-shrink-0"></div><span>B. 尊重文化，降低预期</span></button>
+                        <button data-color="mexico-pink" data-insight="insight-c3" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-mexico-pink flex-shrink-0"></div><span>A. 强制规定，不执行就罚</span></button>
+                        <button data-color="mexico-pink" data-insight="insight-c3" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-mexico-pink flex-shrink-0"></div><span>B. 尊重文化，降低预期</span></button>
                     </div>
                     <div id="insight-c3" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-mexico-pink font-medium mb-1">路璐的破局思路：</p><p class="text-xs text-slate-400">用“私下倾听”建立信任，用“集体共创”达成契约，把沟通变成安全的流程。</p></div>
                 </div>
@@ -387,7 +387,7 @@
             <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
 
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
-                <button onclick="navigateTo('case3-article')" class="w-full max-w-md bg-mexico-pink hover:bg-pink-600 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+                <button data-nav="case3-article" class="nav-btn w-full max-w-md bg-mexico-pink hover:bg-pink-600 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
         </main>
     </div>
@@ -398,7 +398,7 @@
     <!-- ====================================================================================== -->
     <div id="view-case4-summary" class="view-section hidden w-full min-h-screen relative">
         <div class="bg-silhouette bg-central opacity-10"></div>
-        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button onclick="navigateTo('home')" class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 04</div></div></nav>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4"><div class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl"><button data-nav="home" class="nav-btn flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i class="ph-bold ph-arrow-left"></i>返回首页</button><div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">CASE 04</div></div></nav>
         
         <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
             <header class="mb-8 animate-slide-up">
@@ -412,8 +412,8 @@
                     <h3 class="text-sm font-bold text-white mb-3 flex items-center gap-2"><i class="ph-fill ph-lightning text-amber-400"></i> 管理者两难：催促还是代劳？</h3>
                     <p class="text-sm text-slate-400 mb-4 leading-relaxed">本地员工态度好但不动手，任务卡壳。自己做团队不成长，催促可能伤积极性。</p>
                     <div class="space-y-2" id="decision-box-c4">
-                        <button onclick="selectOption(this, 'insight-c4')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-central-blue flex-shrink-0"></div><span>A. 加强管控，天天催日报</span></button>
-                        <button onclick="selectOption(this, 'insight-c4')" class="w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-central-blue flex-shrink-0"></div><span>B. 直接把活干了，省心</span></button>
+                        <button data-color="central-blue" data-insight="insight-c4" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-central-blue flex-shrink-0"></div><span>A. 加强管控，天天催日报</span></button>
+                        <button data-color="central-blue" data-insight="insight-c4" class="option-btn w-full text-left px-4 py-3 rounded-lg bg-slate-800/50 hover:bg-slate-800 border border-slate-700 transition-all text-sm text-slate-300 flex items-center gap-3 group"><div class="w-4 h-4 rounded-full border border-slate-500 group-hover:border-central-blue flex-shrink-0"></div><span>B. 直接把活干了，省心</span></button>
                     </div>
                     <div id="insight-c4" class="hidden mt-4 pt-3 border-t border-white/5 animate-fade-in"><p class="text-sm text-central-blue font-medium mb-1">长玥的破局思路：</p><p class="text-xs text-slate-400">从“推任务”转向“搭路径”。用前馈清单和工具库帮他建立认知地图。</p></div>
                 </div>
@@ -453,7 +453,7 @@
             <div class="text-center text-[10px] text-slate-600 font-mono mt-12">人力行政部-学习发展出品</div>
 
             <div class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
-                <button onclick="navigateTo('case4-article')" class="w-full max-w-md bg-central-blue hover:bg-cyan-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
+                <button data-nav="case4-article" class="nav-btn w-full max-w-md bg-central-blue hover:bg-cyan-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">阅读完整案例 <i class="ph-bold ph-arrow-right"></i></button>
             </div>
         </main>
     </div>
@@ -468,8 +468,8 @@
         <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
             <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
                 <div class="flex flex-wrap items-center gap-3 mb-6">
-                    <button onclick="navigateTo('case1-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                    <button data-nav="case1-summary" class="nav-btn text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button class="print-btn text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
                 </div>
                 <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">肯尼亚高风险环境下的管理实践</h1>
                 <div class="note-card note-kenya mb-8">
@@ -530,8 +530,8 @@
         <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
             <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
                 <div class="flex flex-wrap items-center gap-3 mb-6">
-                    <button onclick="navigateTo('case2-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                    <button data-nav="case2-summary" class="nav-btn text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button class="print-btn text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
                 </div>
                 <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">从超级PM到指挥官的转型之路</h1>
                 <div class="note-card note-indo mb-8">
@@ -595,8 +595,8 @@
         <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
             <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
                 <div class="flex flex-wrap items-center gap-3 mb-6">
-                    <button onclick="navigateTo('case3-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                    <button data-nav="case3-summary" class="nav-btn text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button class="print-btn text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
                 </div>
                 <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">如何拆掉一堵"隐形的墙"</h1>
                 <div class="note-card note-mexico mb-8">
@@ -655,8 +655,8 @@
         <div class="max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
             <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12">
                 <div class="flex flex-wrap items-center gap-3 mb-6">
-                    <button onclick="navigateTo('case4-summary')" class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
-                    <button onclick="printArticle(this)" class="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
+                    <button data-nav="case4-summary" class="nav-btn text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i class="ph-bold ph-arrow-left"></i>返回概览</button>
+                    <button class="print-btn text-xs sm:text-sm px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 border border-white/20 print-hide flex items-center gap-1"><i class="ph-bold ph-printer"></i>下载PDF</button>
                 </div>
                 <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">一次"让对方会做"的跨文化任务辅导</h1>
                 <div class="note-card note-central mb-8">
@@ -814,6 +814,32 @@
 
         renderCaseGrid();
 
+        // 使用事件委托绑定所有事件
+        document.addEventListener('DOMContentLoaded', function() {
+            // 导航按钮事件
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.dataset.nav;
+                    if (target) navigateTo(target);
+                });
+            });
+
+            // 打印按钮事件
+            document.querySelectorAll('.print-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    printArticle(this);
+                });
+            });
+
+            // 选项按钮事件
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const insightId = this.dataset.insight;
+                    if (insightId) selectOption(this, insightId);
+                });
+            });
+        });
+
         function navigateTo(viewId) {
             document.querySelectorAll('.view-section, #view-home').forEach(el => el.classList.add('hidden'));
             const target = document.getElementById('view-' + viewId);
@@ -821,44 +847,77 @@
         }
         async function printArticle(btn) {
             const content = btn.closest('.article-content');
-            if (!content || !window.html2canvas || !window.jspdf) { window.print(); return; }
-            const { jsPDF } = window.jspdf;
-            const heading = (content.querySelector('h1')?.innerText || 'case').replace(/\s+/g, '_');
-            const canvas = await html2canvas(content, { scale: 2, useCORS: true, windowWidth: document.documentElement.scrollWidth });
-            const imgData = canvas.toDataURL('image/jpeg', 0.95);
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const pageWidth = pdf.internal.pageSize.getWidth();
-            const pageHeight = pdf.internal.pageSize.getHeight();
-            const imgWidth = pageWidth;
-            const imgHeight = canvas.height * imgWidth / canvas.width;
-            let heightLeft = imgHeight;
-            let position = 0;
-            pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-            while (heightLeft > 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
+            if (!content || !window.html2canvas || !window.jspdf) {
+                window.print();
+                return;
+            }
+
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="ph-bold ph-spinner animate-spin"></i> 生成中...';
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const heading = (content.querySelector('h1')?.innerText || 'case').replace(/\s+/g, '_');
+                const canvas = await html2canvas(content, {
+                    scale: 2,
+                    useCORS: true,
+                    windowWidth: document.documentElement.scrollWidth
+                });
+                const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const imgWidth = pageWidth;
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
                 pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
+                while (heightLeft > 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                pdf.save(`${heading}.pdf`);
+            } catch (error) {
+                console.error('PDF 生成失败:', error);
+                alert('PDF 生成失败，将使用浏览器打印功能');
+                window.print();
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
             }
-            pdf.save(`${heading}.pdf`);
         }
         function selectOption(btn, insightId) {
             const container = btn.parentElement;
             const buttons = container.querySelectorAll('button');
+            const colorMap = {
+                'surfin-blue': ['border-surfin-blue', 'bg-surfin-blue'],
+                'indo-gold': ['border-indo-gold', 'bg-indo-gold'],
+                'mexico-pink': ['border-mexico-pink', 'bg-mexico-pink'],
+                'central-blue': ['border-central-blue', 'bg-central-blue']
+            };
+
             buttons.forEach(b => {
-                b.classList.remove('bg-slate-800', 'border-surfin-blue', 'ring-1', 'ring-surfin-blue');
+                b.classList.remove('bg-slate-800', 'ring-1', 'ring-white/20');
                 b.classList.add('bg-slate-800/50', 'opacity-50');
-                b.querySelector('div').classList.remove('bg-surfin-blue', 'border-transparent', 'bg-indo-gold', 'bg-mexico-pink', 'bg-central-blue');
+                const dot = b.querySelector('div');
+                Object.values(colorMap).forEach(classes => {
+                    b.classList.remove(classes[0]);
+                    dot.classList.remove(classes[1]);
+                });
             });
+
             btn.classList.remove('bg-slate-800/50', 'opacity-50');
             btn.classList.add('bg-slate-800', 'ring-1', 'ring-white/20');
-            
-            // Color logic
-            if(btn.innerHTML.includes('border-surfin-blue')) { btn.classList.add('border-surfin-blue'); btn.querySelector('div').classList.add('bg-surfin-blue'); }
-            else if(btn.innerHTML.includes('border-indo-gold')) { btn.classList.add('border-indo-gold'); btn.querySelector('div').classList.add('bg-indo-gold'); }
-            else if(btn.innerHTML.includes('border-mexico-pink')) { btn.classList.add('border-mexico-pink'); btn.querySelector('div').classList.add('bg-mexico-pink'); }
-            else if(btn.innerHTML.includes('border-central-blue')) { btn.classList.add('border-central-blue'); btn.querySelector('div').classList.add('bg-central-blue'); }
+
+            const color = btn.dataset.color;
+            if (color && colorMap[color]) {
+                btn.classList.add(colorMap[color][0]);
+                btn.querySelector('div').classList.add(colorMap[color][1]);
+            }
 
             document.getElementById(insightId).classList.remove('hidden');
             document.getElementById(insightId).classList.add('animate-fade-in');
