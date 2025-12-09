@@ -2815,6 +2815,196 @@
         </div>
     </article>
 
+    <!-- ====================================================================================== -->
+    <!-- CASE M5: 技术中心 · 高效批评 (Light theme) -->
+    <!-- ====================================================================================== -->
+    <div id="view-manager5-summary" class="view-section hidden w-full min-h-screen relative">
+        <nav class="fixed w-full z-50 top-0 px-4 py-4">
+            <div
+                class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl">
+                <button onclick="navigateTo('home')"
+                    class="flex items-center gap-2 text-xs sm:text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                    <i class="ph-bold ph-arrow-left"></i>
+                    <span data-lang="zh">返回首页</span>
+                    <span data-lang="en" hidden>Back to Home</span>
+                </button>
+                <div class="text-[10px] text-slate-500 font-mono border border-slate-200 px-1.5 rounded">CASE M05</div>
+            </div>
+        </nav>
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-28 relative z-10">
+            <header class="mb-10 animate-slide-up">
+                <div class="flex items-center gap-2 mb-3">
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-700 border border-rose-200"
+                        data-lang="zh">高效批评</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200"
+                        data-lang="zh">技术中心</span>
+                </div>
+                <h1 class="font-serif text-2xl md:text-3xl font-bold text-slate-900 mb-3 leading-tight">
+                    <span data-lang="zh">高效批评：从"三明治"到一对一正式反馈</span>
+                </h1>
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                    <div
+                        class="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[10px] text-slate-700">
+                        Z</div>
+                    <span data-lang="zh">张晓文 · 技术中心负责人</span>
+                </div>
+            </header>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.05s">
+                <div
+                    class="bg-white rounded-2xl p-5 border border-slate-200 shadow-[0_12px_30px_rgba(148,163,184,0.18)]">
+                    <h3 class="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                        <i class="ph-fill ph-lightning text-amber-500"></i>
+                        <span data-lang="zh">管理者两难：批评太轻没效果，太重伤感情</span>
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        <span data-lang="zh">不知如何把握批评的度，担心批评变成责备让下属产生负面情绪。总想当"好人"，结果下属无法深刻认识错误，相同问题反复出现。</span>
+                    </p>
+                    <div class="space-y-2" id="decision-box-m5" data-color="surfin-blue">
+                        <button onclick="selectOption(this, 'insight-m5')"
+                            class="w-full text-left px-4 py-3 rounded-lg bg-slate-100 hover:bg-slate-50 border border-slate-200 transition-all text-sm text-slate-700 flex items-center gap-3 group">
+                            <div
+                                class="w-4 h-4 rounded-full border border-slate-400 group-hover:border-sky-500 flex-shrink-0">
+                            </div>
+                            <span data-lang="zh">A. 用三明治法，先表扬再批评</span>
+                        </button>
+                        <button onclick="selectOption(this, 'insight-m5')"
+                            class="w-full text-left px-4 py-3 rounded-lg bg-slate-100 hover:bg-slate-50 border border-slate-200 transition-all text-sm text-slate-700 flex items-center gap-3 group">
+                            <div
+                                class="w-4 h-4 rounded-full border border-slate-400 group-hover:border-sky-500 flex-shrink-0">
+                            </div>
+                            <span data-lang="zh">B. 轻描淡写，避免冲突</span>
+                        </button>
+                    </div>
+                    <div id="insight-m5" class="hidden mt-4 pt-3 border-t border-slate-200 animate-fade-in">
+                        <p class="text-sm text-sky-600 font-medium mb-1" data-lang="zh">张晓文的解法：</p>
+                        <p class="text-xs text-slate-600" data-lang="zh">
+                            放弃三明治法，一对一正式批评：全面了解情况后客观沟通，让下属反馈对错误的认识，共同制定纠错方案，文档总结组内分享，确保同类错误不再发生。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-10 grid grid-cols-1 md:grid-cols-4 gap-3 animate-slide-up"
+                style="animation-delay: 0.12s">
+                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                    <div class="text-[10px] font-bold text-rose-700 mb-1 uppercase tracking-wider">突破 1 · 正式批评</div>
+                    <div class="text-sm text-slate-900 font-medium">一对一+不模棱两可</div>
+                    <ul class="text-xs text-slate-600 mt-2 space-y-1">
+                        <li>• 保证一对一的正式批评。</li>
+                        <li>• 不采取三明治法则。</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                    <div class="text-[10px] font-bold text-amber-700 mb-1 uppercase tracking-wider">突破 2 · 全面了解</div>
+                    <div class="text-sm text-slate-900 font-medium">消除盲区+客观认识</div>
+                    <ul class="text-xs text-slate-600 mt-2 space-y-1">
+                        <li>• 对出错事项全面了解。</li>
+                        <li>• 保证自己有客观认识。</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                    <div class="text-[10px] font-bold text-sky-700 mb-1 uppercase tracking-wider">突破 3 · 反馈确认</div>
+                    <div class="text-sm text-slate-900 font-medium">让下属反馈+深刻认识</div>
+                    <ul class="text-xs text-slate-600 mt-2 space-y-1">
+                        <li>• 让下属对错误进行反馈。</li>
+                        <li>• 确保对根本原因认识深刻。</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+                    <div class="text-[10px] font-bold text-emerald-700 mb-1 uppercase tracking-wider">突破 4 · 纠错固化</div>
+                    <div class="text-sm text-slate-900 font-medium">纠错方案+文档分享</div>
+                    <ul class="text-xs text-slate-600 mt-2 space-y-1">
+                        <li>• 商量纠错方案拿回结果。</li>
+                        <li>• 文档总结组内分享。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="mb-12 animate-slide-up" style="animation-delay: 0.2s">
+                <h2 class="text-base font-bold text-slate-900 mb-3">实操流程</h2>
+                <div
+                    class="bg-white rounded-xl border border-slate-200 p-4 grid grid-cols-1 md:grid-cols-2 gap-3 shadow-sm text-xs text-slate-600">
+                    <div>
+                        <div class="text-slate-900 font-semibold mb-1">1) 一对一正式批评</div>不模棱两可，不采取三明治法则，直接进入正题。
+                    </div>
+                    <div>
+                        <div class="text-slate-900 font-semibold mb-1">2) 全面了解情况</div>对出错的事情或项目进行全面了解，消除盲区，保证客观认识。
+                    </div>
+                    <div>
+                        <div class="text-slate-900 font-semibold mb-1">3) 让下属反馈</div>让下属对错误进行反馈，确保他对根本原因的认识是深刻的。
+                    </div>
+                    <div>
+                        <div class="text-slate-900 font-semibold mb-1">4) 共同制定纠错方案</div>和下属商量出好的纠错方案，把正确的结果拿回来。
+                    </div>
+                    <div>
+                        <div class="text-slate-900 font-semibold mb-1">5) 文档总结与分享</div>对错误进行文档总结并在组内分享，确保全组不会发生二次错误。
+                    </div>
+                </div>
+            </section>
+
+            <div class="text-center text-[10px] text-slate-500 font-mono mt-10">
+                <span data-lang="zh">人力行政部-学习发展出品</span>
+            </div>
+
+            <div
+                class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#f6f8fb] via-[#f6f8fb] to-transparent flex justify-center">
+                <button onclick="navigateTo('manager5-article')"
+                    class="w-full max-w-md bg-sky-500 hover:bg-sky-600 text-white h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold">
+                    <span data-lang="zh">阅读完整案例</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- CASE M5 ARTICLE (Effective Critique) -->
+    <article id="view-manager5-article"
+        class="view-section hidden w-full min-h-screen bg-[#f6f8fb] relative z-40 manager-article">
+        <div class="relative z-10 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
+            <div class="article-content glass-card rounded-[32px] border border-slate-200 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12 text-slate-800"
+                data-lang="zh" style="background:#ffffff;">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('manager5-summary')"
+                        class="text-slate-500 text-sm sm:text-base hover:text-slate-900 flex items-center gap-2">
+                        <i class="ph-bold ph-arrow-left"></i><span data-i18n="back-overview">返回概览</span>
+                    </button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">高效批评：从"三明治"到一对一正式反馈
+                </h1>
+                <div class="note-card note-central mb-8"
+                    style="background:#ffe4e6; color:#0f172a; border-color:#fecdd3;">
+                    <div class="note-title" style="color:#e11d48;">要点速记</div>
+                    <p class="m-0">批评不是责备，目的是让下属知道什么是对的并持续做对。</p>
+                    <p class="m-0">一对一正式批评+全面了解+让下属反馈+纠错方案+文档分享。</p>
+                    <div class="note-steps" style="color:#be123c;">核心：下属的真改变才是批评的最终结果。</div>
+                </div>
+                <p>对于在管理过程中某些同学出现的错误，不知如何去把握批评的度，总是担心批评成了责备以至于下属会产生什么负面情绪，影响工作或者其他方面。所以在处理问题时，总是希望自己被认为是一个传统意义上的"好人"，没法让下属同事深刻的认识到自己的错误。</p>
+
+                <h2>一、情境与冲突</h2>
+                <p>更多的是类似徐老师讲课中的三明治法批评，总是先肯定下属做的好的地方再引申出批评，导致批评的不深刻。在实际工作中偶尔会出现错误重新出现的情况，导致相同的错误出现两次，对个人以及团队造成不好的负面影响。而且批评很多细节自己都没有重视起来，每次批评的方式是多变的。</p>
+
+                <h2>二、你之前的做法</h2>
+                <p>1) 采用三明治法批评，先肯定后批评，导致批评不深刻；2) 批评方式多变，没有形成固定的方法；3) 很多细节没有重视起来，相同错误可能出现两次。</p>
+
+                <h2>三、改进后的做法</h2>
+                <p>1) 批评绝对保证是一对一的正式批评，不模棱两可，不采取三明治法则。</p>
+                <p>2) 对出错的事情或者项目进行全面的了解，消除盲区，保证自己一定要有一个客观的认识。</p>
+                <p>3) 每次沟通要让下属对错误进行反馈，保证他对错误的根本原因认识是深刻的。</p>
+                <p>4) 和下属商量出一个好的纠错方案，把正确的结果拿回来。并对这次错误进行文档总结并进行组内分享，保证全组不会发生二次这样的错误。</p>
+
+                <h2>四、带来的变化与成果</h2>
+                <p>首先自己认识到了批评的本质 – 批评不是责备，批评的目的是告诉下属同事什么事对的，并保证这个对的事情是要持续发生的，而不是单纯的告诉他怎么错的，下属同事的真改变才是我们最终要的批评的结果。</p>
+                <p>其次，团队都认识到了批评的核心，批评是为了大家工作做的更好。在后续的批评中大家都一起深刻反思错误的根本原因，在优先解决问题的同时，也做好了总结工作，全组出现过的错误基本不会出现第二次。</p>
+
+                <div class="text-center text-[10px] text-slate-500 font-mono mt-10">
+                    <span data-lang="zh">人力行政部-学习发展出品</span>
+                </div>
+            </div>
+        </div>
+    </article>
+
     <script>
         let currentLang = 'zh';
         let currentLibrary = 'cross';
@@ -2970,7 +3160,7 @@
             {
                 viewId: 'manager4-summary',
                 caseNumber: { zh: 'CASE M04 · 绩效沟通', en: 'CASE M04 · PERFORMANCE 1:1s' },
-                title: { zh: '把面谈从“闲聊”变成“对齐与复盘”', en: 'Turn 1:1s from chit-chat to alignment & review' },
+                title: { zh: '把面谈从"闲聊"变成"对齐与复盘"', en: 'Turn 1:1s from chit-chat to alignment & review' },
                 description: { zh: '固定节奏+议程预告+复盘前瞻，一次谈清状态/问题/计划。', en: 'Cadence + agenda prep + review/forward-look to align status, issues, and plans in one 1:1.' },
                 avatarInitial: 'Z',
                 author: { zh: '张晓文 · 技术中心', en: 'Zhang Xiaowen · Tech Center' },
@@ -2979,7 +3169,18 @@
                 readTime: { zh: '6 min', en: '6 min' }
             },
             {
-                caseNumber: { zh: 'CASE M05 · 基层管理', en: 'CASE M05 · FRONTLINE MANAGEMENT' },
+                viewId: 'manager5-summary',
+                caseNumber: { zh: 'CASE M05 · 高效批评', en: 'CASE M05 · EFFECTIVE CRITIQUE' },
+                title: { zh: '高效批评：从"三明治"到一对一正式反馈', en: 'Effective Critique: From sandwich method to formal 1:1 feedback' },
+                description: { zh: '一对一正式批评+全面了解+反馈确认+纠错方案，让批评带来真改变。', en: 'Formal 1:1 critique + full understanding + feedback confirmation + correction plan for real change.' },
+                avatarInitial: 'Z',
+                author: { zh: '张晓文 · 技术中心', en: 'Zhang Xiaowen · Tech Center' },
+                library: 'manager',
+                styleClass: 'style-manager',
+                readTime: { zh: '6 min', en: '6 min' }
+            },
+            {
+                caseNumber: { zh: 'CASE M06 · 基层管理', en: 'CASE M06 · FRONTLINE MANAGEMENT' },
                 borderClass: 'border-white/10',
                 labelClass: 'text-slate-200 border border-white/20',
                 silhouetteClass: 'bg-central',
@@ -2994,7 +3195,7 @@
                 lockedIcon: 'lock-key'
             },
             {
-                caseNumber: { zh: 'CASE M06 · 基层管理', en: 'CASE M06 · FRONTLINE MANAGEMENT' },
+                caseNumber: { zh: 'CASE M07 · 基层管理', en: 'CASE M07 · FRONTLINE MANAGEMENT' },
                 borderClass: 'border-white/10',
                 labelClass: 'text-slate-200 border border-white/20',
                 silhouetteClass: 'bg-indo',
