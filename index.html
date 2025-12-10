@@ -545,6 +545,19 @@
             box-shadow: none;
         }
 
+        .manager-pill.cursor-pointer:hover {
+            background: #f1f5f9;
+            border-color: #0ea5e9;
+            color: #0284c7;
+        }
+
+        .manager-pill.active {
+            background: #0ea5e9;
+            border-color: #0ea5e9;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+        }
+
         #manager-filter-bar {
             transition: opacity 0.25s ease;
         }
@@ -626,19 +639,19 @@
                 class="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-[0_12px_40px_rgba(148,163,184,0.25)] p-4 flex flex-col gap-3">
                 <div class="flex flex-wrap items-center gap-2">
                     <span class="manager-pill muted">按职能</span>
-                    <span class="manager-pill">销售</span>
-                    <span class="manager-pill">运营</span>
-                    <span class="manager-pill">客服</span>
-                    <span class="manager-pill">仓配</span>
-                    <span class="manager-pill">HR</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="dept" data-filter-value="销售" onclick="toggleFilter('dept', '销售')">销售</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="dept" data-filter-value="运营" onclick="toggleFilter('dept', '运营')">运营</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="dept" data-filter-value="客服" onclick="toggleFilter('dept', '客服')">客服</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="dept" data-filter-value="仓配" onclick="toggleFilter('dept', '仓配')">仓配</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="dept" data-filter-value="HR" onclick="toggleFilter('dept', 'HR')">HR</span>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                     <span class="manager-pill muted">按能力</span>
-                    <span class="manager-pill">授权</span>
-                    <span class="manager-pill">排班</span>
-                    <span class="manager-pill">辅导</span>
-                    <span class="manager-pill">激励</span>
-                    <span class="manager-pill">合规</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="skill" data-filter-value="授权" onclick="toggleFilter('skill', '授权')">授权</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="skill" data-filter-value="排班" onclick="toggleFilter('skill', '排班')">排班</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="skill" data-filter-value="辅导" onclick="toggleFilter('skill', '辅导')">辅导</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="skill" data-filter-value="激励" onclick="toggleFilter('skill', '激励')">激励</span>
+                    <span class="manager-pill cursor-pointer" data-filter-type="skill" data-filter-value="合规" onclick="toggleFilter('skill', '合规')">合规</span>
                 </div>
             </div>
         </div>
@@ -3327,12 +3340,13 @@
                 viewId: 'manager1-summary',
                 caseNumber: { zh: 'CASE M01 · 布置工作', en: 'CASE M01 · TASK BRIEFING' },
                 title: { zh: '如何高效布置工作', en: 'How to brief work efficiently' },
-                description: { zh: '意愿三角 + 前馈工单化 + 办事攻略，确保“交代得清、做到位、能复用”。', en: 'Use willingness check + feedforward ticket + playbook so asks are clear, done right, and reusable.' },
+                description: { zh: '意愿三角 + 前馈工单化 + 办事攻略，确保"交代得清、做到位、能复用"。', en: 'Use willingness check + feedforward ticket + playbook so asks are clear, done right, and reusable.' },
                 avatarInitial: 'W',
                 author: { zh: '吴彦霖 · 人力行政部', en: 'Wu Yanlin · HR' },
                 library: 'manager',
                 styleClass: 'style-manager',
-                readTime: { zh: '6 min', en: '6 min' }
+                readTime: { zh: '6 min', en: '6 min' },
+                tags: { dept: ['HR'], skill: ['辅导'] }
             },
             {
                 viewId: 'manager2-summary',
@@ -3343,18 +3357,20 @@
                 author: { zh: '吴彦霖 · 人力行政部', en: 'Wu Yanlin · HR' },
                 library: 'manager',
                 styleClass: 'style-manager',
-                readTime: { zh: '7 min', en: '7 min' }
+                readTime: { zh: '7 min', en: '7 min' },
+                tags: { dept: ['HR'], skill: ['辅导'] }
             },
             {
                 viewId: 'manager3-summary',
                 caseNumber: { zh: 'CASE M03 · 批评员工', en: 'CASE M03 · CRITIQUE & ALIGNMENT' },
-                title: { zh: '批评员工：把“避责”变成“对齐”', en: 'Critique teammates: turn blame-avoidance into alignment' },
+                title: { zh: '批评员工：把"避责"变成"对齐"', en: 'Critique teammates: turn blame-avoidance into alignment' },
                 description: { zh: '问题必报+带方案，对事不对人，用清单和复盘把批评变成改进。', en: 'Require reporting with solutions, focus on facts, and turn critique into improvement via checklists and reviews.' },
                 avatarInitial: 'Z',
                 author: { zh: '张晓文 · 技术中心', en: 'Zhang Xiaowen · Tech Center' },
                 library: 'manager',
                 styleClass: 'style-manager',
-                readTime: { zh: '7 min', en: '7 min' }
+                readTime: { zh: '7 min', en: '7 min' },
+                tags: { dept: ['运营'], skill: ['辅导'] }
             },
             {
                 viewId: 'manager4-summary',
@@ -3365,7 +3381,8 @@
                 author: { zh: '张晓文 · 技术中心', en: 'Zhang Xiaowen · Tech Center' },
                 library: 'manager',
                 styleClass: 'style-manager',
-                readTime: { zh: '6 min', en: '6 min' }
+                readTime: { zh: '6 min', en: '6 min' },
+                tags: { dept: ['运营'], skill: ['辅导'] }
             },
             {
                 viewId: 'manager5-summary',
@@ -3376,7 +3393,8 @@
                 author: { zh: '张晓文 · 技术中心', en: 'Zhang Xiaowen · Tech Center' },
                 library: 'manager',
                 styleClass: 'style-manager',
-                readTime: { zh: '6 min', en: '6 min' }
+                readTime: { zh: '6 min', en: '6 min' },
+                tags: { dept: ['运营'], skill: ['辅导'] }
             },
             {
                 viewId: 'manager6-summary',
@@ -3387,7 +3405,8 @@
                 author: { zh: '王尚程 · 上海风控中心', en: 'Wang Shangcheng · Shanghai Risk Control' },
                 library: 'manager',
                 styleClass: 'style-manager',
-                readTime: { zh: '6 min', en: '6 min' }
+                readTime: { zh: '6 min', en: '6 min' },
+                tags: { dept: ['运营'], skill: ['辅导'] }
             },
             {
                 caseNumber: { zh: 'CASE M07 · 基层管理', en: 'CASE M07 · FRONTLINE MANAGEMENT' },
@@ -3406,10 +3425,51 @@
             }
         ];
 
+        // 标签筛选状态
+        let activeFilters = { dept: null, skill: null };
+
+        // 标签筛选函数
+        function toggleFilter(type, value) {
+            if (activeFilters[type] === value) {
+                activeFilters[type] = null; // 取消选中
+            } else {
+                activeFilters[type] = value; // 选中
+            }
+            updateFilterPills();
+            renderCaseGrid();
+        }
+
+        // 更新标签样式
+        function updateFilterPills() {
+            document.querySelectorAll('.manager-pill[data-filter-type]').forEach(pill => {
+                const type = pill.dataset.filterType;
+                const value = pill.dataset.filterValue;
+                if (activeFilters[type] === value) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
+                }
+            });
+        }
+
         function renderCaseGrid() {
             const grid = document.getElementById('case-grid');
             if (!grid) return;
-            const filtered = casesData.filter(card => card.library === currentLibrary);
+            let filtered = casesData.filter(card => card.library === currentLibrary);
+
+            // 应用标签筛选（仅对管理者案例库）
+            if (currentLibrary === 'manager') {
+                if (activeFilters.dept) {
+                    filtered = filtered.filter(card =>
+                        card.tags && card.tags.dept && card.tags.dept.includes(activeFilters.dept)
+                    );
+                }
+                if (activeFilters.skill) {
+                    filtered = filtered.filter(card =>
+                        card.tags && card.tags.skill && card.tags.skill.includes(activeFilters.skill)
+                    );
+                }
+            }
             if (filtered.length === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center text-slate-400 py-10">${copy.noCases[currentLang]}</div>`;
                 return;
@@ -3502,6 +3562,9 @@
 
         function setLibrary(lib) {
             currentLibrary = lib;
+            // 重置筛选器
+            activeFilters = { dept: null, skill: null };
+            updateFilterPills();
             const tabCross = document.getElementById('tab-cross');
             const tabManager = document.getElementById('tab-manager');
             const bodyEl = document.body;
