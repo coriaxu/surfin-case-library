@@ -524,31 +524,6 @@
             color: #64748b;
         }
 
-        .manager-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 9999px;
-            border: 1px solid #e2e8f0;
-            background: #fff;
-            color: #0f172a;
-            font-size: 12px;
-            font-weight: 600;
-            box-shadow: 0 6px 16px rgba(148, 163, 184, 0.18);
-        }
-
-        .manager-pill.muted {
-            background: #f8fafc;
-            color: #475569;
-            border-color: #e2e8f0;
-            box-shadow: none;
-        }
-
-        #manager-filter-bar {
-            transition: opacity 0.25s ease;
-        }
-
         /* Manager article readability */
         .manager-article .article-content {
             background: #ffffff !important;
@@ -621,27 +596,6 @@
                 </button>
             </div>
         </nav>
-        <div id="manager-filter-bar" class="hidden w-full max-w-6xl px-6 md:px-8 lg:px-12 -mt-2 mb-6 z-10">
-            <div
-                class="bg-white/80 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-[0_12px_40px_rgba(148,163,184,0.25)] p-4 flex flex-col gap-3">
-                <div class="flex flex-wrap items-center gap-2">
-                    <span class="manager-pill muted">按职能</span>
-                    <span class="manager-pill">销售</span>
-                    <span class="manager-pill">运营</span>
-                    <span class="manager-pill">客服</span>
-                    <span class="manager-pill">仓配</span>
-                    <span class="manager-pill">HR</span>
-                </div>
-                <div class="flex flex-wrap items-center gap-2">
-                    <span class="manager-pill muted">按能力</span>
-                    <span class="manager-pill">授权</span>
-                    <span class="manager-pill">排班</span>
-                    <span class="manager-pill">辅导</span>
-                    <span class="manager-pill">激励</span>
-                    <span class="manager-pill">合规</span>
-                </div>
-            </div>
-        </div>
         <header class="w-full max-w-5xl text-center mb-10 z-10 px-6">
             <h1 class="font-serif-title text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
                 <span id="hero-title-zh" data-lang="zh">Surfin管理训练营优秀案例库</span>
@@ -3505,7 +3459,6 @@
             const tabCross = document.getElementById('tab-cross');
             const tabManager = document.getElementById('tab-manager');
             const bodyEl = document.body;
-            const filterBar = document.getElementById('manager-filter-bar');
             if (tabCross && tabManager) {
                 if (lib === 'cross') {
                     tabCross.classList.add('bg-gray-800', 'text-slate-100', 'border', 'border-gray-700', 'shadow-lg');
@@ -3519,10 +3472,6 @@
                     tabCross.classList.add('text-gray-400', 'border-transparent');
                     tabCross.classList.remove('bg-gray-800', 'text-slate-100', 'border', 'border-gray-700', 'shadow-lg', 'text-white');
                     bodyEl.classList.add('manager-mode');
-                }
-                if (filterBar) {
-                    filterBar.classList.toggle('hidden', lib !== 'manager');
-                    filterBar.style.opacity = lib === 'manager' ? '1' : '0';
                 }
             }
             const hero = heroCopy[lib] || heroCopy.cross;
