@@ -4130,9 +4130,9 @@
             const crossFilterBar = document.getElementById('cross-filter-bar');
             if (crossFilterBar) {
                 if (lib === 'cross') {
-                    crossFilterBar.hidden = false;
+                    crossFilterBar.classList.remove('hidden');
                 } else {
-                    crossFilterBar.hidden = true;
+                    crossFilterBar.classList.add('hidden');
                 }
             }
 
