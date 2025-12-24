@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="dark">
-<!-- Version 2.1 Fixed Deployment -->
+<!-- Version 3.1 [FIXED] -->
 
 <head>
     <meta charset="UTF-8">
@@ -46,7 +46,7 @@
                 }
             }
         }
-        console.log("Version 3.0 [FIXED] - Loaded at " + new Date().toISOString());
+        console.log("Version 3.1 [FIXED] - Loaded at " + new Date().toISOString());
     </script>
     <style>
         /* 隐藏滚动条但保留功能 */
@@ -346,6 +346,33 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
+        .card-playbook {
+            background:
+                linear-gradient(145deg, rgba(22, 25, 35, 0.92) 0%, rgba(15, 17, 21, 0.96) 65%, rgba(255, 255, 255, 0.02) 100%),
+                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.028) 0, rgba(255, 255, 255, 0.028) 1px, transparent 1px, transparent 10px);
+        }
+
+        .card-playbook::before {
+            opacity: 0.22;
+        }
+
+        .card-playbook::after {
+            opacity: 0.65;
+        }
+
+        .playbook-spine {
+            position: absolute;
+            top: 1.25rem;
+            bottom: 1.25rem;
+            left: 1.25rem;
+            width: 4px;
+            border-radius: 999px;
+            background: linear-gradient(to bottom, transparent, var(--border-color), transparent);
+            opacity: 0.85;
+            z-index: 2;
+            pointer-events: none;
+        }
+
         .flag-bg {
             position: absolute;
             top: 0;
@@ -606,6 +633,25 @@
                 <span id="hero-sub-en" data-lang="en" hidden>Cross-cultural Case Library · Managers Case Library</span>
             </p>
         </header>
+        <div id="cross-filter-bar" class="w-full flex justify-center mb-8 z-10 px-6" hidden>
+            <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-md">
+                <button data-filter="all" onclick="setCrossTypeFilter('all')"
+                    class="px-4 py-1.5 rounded-full text-xs font-semibold transition-colors border border-transparent bg-gray-800 text-slate-100 border-gray-700">
+                    <span data-lang="zh">全部</span>
+                    <span data-lang="en" hidden>All</span>
+                </button>
+                <button data-filter="case" onclick="setCrossTypeFilter('case')"
+                    class="px-4 py-1.5 rounded-full text-xs font-semibold transition-colors border border-transparent text-gray-400 hover:text-white hover:bg-white/5">
+                    <span data-lang="zh">案例</span>
+                    <span data-lang="en" hidden>Cases</span>
+                </button>
+                <button data-filter="playbook" onclick="setCrossTypeFilter('playbook')"
+                    class="px-4 py-1.5 rounded-full text-xs font-semibold transition-colors border border-transparent text-gray-400 hover:text-white hover:bg-white/5">
+                    <span data-lang="zh">国家手册</span>
+                    <span data-lang="en" hidden>Playbooks</span>
+                </button>
+            </div>
+        </div>
         <main class="w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
             <div id="case-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4"></div>
         </main>
@@ -1555,6 +1601,204 @@
                 <button onclick="navigateTo('case4-article')"
                     class="w-full max-w-md bg-central-blue hover:bg-cyan-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold"><span
                         data-lang="zh">阅读完整案例</span><span data-lang="en" hidden>Read full case</span> <i
+                        class="ph-bold ph-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <!-- ====================================================================================== -->
+    <!-- PLAYBOOK 01: 印度尼西亚 - 国家跨文化管理使用手册 -->
+    <!-- ====================================================================================== -->
+    <div id="view-playbook1-summary" class="view-section hidden w-full min-h-screen relative">
+        <div class="bg-silhouette bg-indo opacity-10"></div>
+        <div class="page-flag-bg flag-indonesia"></div>
+        <nav class="fixed w-full z-50 top-0 px-4 py-4">
+            <div
+                class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto glass-card rounded-full px-4 sm:px-6 py-3 flex justify-between items-center backdrop-blur-xl">
+                <button onclick="navigateTo('home')"
+                    class="flex items-center gap-2 text-xs sm:text-sm text-slate-400 hover:text-white transition-colors"><i
+                        class="ph-bold ph-arrow-left"></i><span data-lang="zh">返回首页</span><span data-lang="en"
+                        hidden>Back to Home</span></button>
+                <div class="text-[10px] text-slate-500 font-mono border border-slate-700 px-1.5 rounded">PLAYBOOK 01
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-24 pb-32 relative z-10">
+            <header class="mb-8 animate-slide-up">
+                <div class="flex items-center gap-2 mb-3">
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-indo-gold/20 text-indo-gold border border-indo-gold/30"
+                        data-lang="zh">国家手册</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-indo-gold/20 text-indo-gold border border-indo-gold/30"
+                        data-lang="en" hidden>Country Playbook</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600"
+                        data-lang="zh">印度尼西亚</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-700 text-slate-300 border border-slate-600"
+                        data-lang="en" hidden>Indonesia</span>
+                </div>
+                <h1 class="font-serif text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+                    <span data-lang="zh">目标国家跨文化管理使用手册</span>
+                    <span data-lang="en" hidden>Cross-cultural Management Playbook</span>
+                </h1>
+                <div class="flex items-center gap-2 text-xs text-slate-400">
+                    <div
+                        class="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-[10px] text-white">
+                        ID</div><span data-lang="zh">海外PM · 印度尼西亚</span><span data-lang="en" hidden>Overseas PM ·
+                        Indonesia</span>
+                </div>
+            </header>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.08s">
+                <div class="note-card note-indo">
+                    <div class="note-title" data-lang="zh">要点速记</div>
+                    <div class="note-title" data-lang="en" hidden>Key takeaways</div>
+                    <p class="m-0" data-lang="zh">管理印尼团队，本质是在经营一张“关系网络”和“和谐生态”。</p>
+                    <p class="m-0" data-lang="en" hidden>Managing in Indonesia is managing a web of relationships and
+                        harmony.</p>
+                    <p class="m-0" data-lang="zh">高权力距离 + 高语境沟通：要更明确方向、更重视非正式沟通。</p>
+                    <p class="m-0" data-lang="en" hidden>High power distance + high-context communication: set clearer
+                        direction and rely on informal channels.</p>
+                    <div class="note-steps" data-lang="zh">结构：文化差异 → 管理情境策略 → 实践案例 → 工具箱 → 建议。</div>
+                    <div class="note-steps" data-lang="en" hidden>Structure: culture → scenarios → case → toolbox →
+                        recommendations.</div>
+                </div>
+            </section>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.14s">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-base font-bold text-white">
+                        <span data-lang="zh">文化差异（3 个重点）</span>
+                        <span data-lang="en" hidden>3 cultural signals</span>
+                    </h2>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 border border-slate-700"
+                        data-lang="zh">可复用</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 border border-slate-700"
+                        data-lang="en" hidden>Reusable</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div
+                        class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider"
+                            data-lang="zh">1. 权力距离</div>
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider" data-lang="en"
+                            hidden>1. Power distance</div>
+                        <div class="text-xs text-slate-400" data-lang="zh">员工视领导为长辈（Bapak），很少直接提出异议。</div>
+                        <div class="text-xs text-slate-400" data-lang="en" hidden>Leaders are treated like elders
+                            (Bapak);
+                            dissent is rare.</div>
+                        <div class="text-xs text-slate-400 mt-2" data-lang="zh"><span
+                                class="text-slate-200 font-medium">启示：</span>“严父慈母”式管理：方向清晰 + 个人关怀，耐心放权。</div>
+                        <div class="text-xs text-slate-400 mt-2" data-lang="en" hidden><span
+                                class="text-slate-200 font-medium">Implication:</span> Clear direction + personal care,
+                            then patient delegation.</div>
+                    </div>
+                    <div
+                        class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider"
+                            data-lang="zh">2. 集体主义</div>
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider" data-lang="en"
+                            hidden>2. Collectivism</div>
+                        <div class="text-xs text-slate-400" data-lang="zh">团队和谐优先，成员倾向互助共同完成任务。</div>
+                        <div class="text-xs text-slate-400" data-lang="en" hidden>Harmony first; teammates prefer
+                            helping
+                            each other to finish together.</div>
+                        <div class="text-xs text-slate-400 mt-2" data-lang="zh"><span
+                                class="text-slate-200 font-medium">启示：</span>激励机制向团队倾斜，公开表扬多强调“共同成果”。</div>
+                        <div class="text-xs text-slate-400 mt-2" data-lang="en" hidden><span
+                                class="text-slate-200 font-medium">Implication:</span> Incentives and praise should lean
+                            to team wins.</div>
+                    </div>
+                    <div
+                        class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider"
+                            data-lang="zh">3. 高语境沟通</div>
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider" data-lang="en"
+                            hidden>3. High-context</div>
+                        <div class="text-xs text-slate-400" data-lang="zh">很少直接说“不”，进展慢背后常有“说不出口的困难”。</div>
+                        <div class="text-xs text-slate-400" data-lang="en" hidden>People rarely say “no” directly;
+                            delays
+                            often hide unspoken blockers.</div>
+                        <div class="text-xs text-slate-400 mt-2" data-lang="zh"><span
+                                class="text-slate-200 font-medium">启示：</span>非正式沟通价值更高，管理者要主动帮他们把困难说出来。</div>
+                        <div class="text-xs text-slate-400 mt-2" data-lang="en" hidden><span
+                                class="text-slate-200 font-medium">Implication:</span> Informal chats reveal truth; help
+                            them surface blockers.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-10 animate-slide-up" style="animation-delay: 0.2s">
+                <h2 class="text-base font-bold text-white mb-3">
+                    <span data-lang="zh">关键管理情境与策略</span>
+                    <span data-lang="en" hidden>Scenarios & strategies</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div
+                        class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider"
+                            data-lang="zh">任务布置/协同</div>
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider" data-lang="en"
+                            hidden>Task briefing</div>
+                        <div class="text-xs text-slate-400" data-lang="zh">指令清晰之外，要强调“为什么是我们团队来做”，赋予集体荣誉感。</div>
+                        <div class="text-xs text-slate-400" data-lang="en" hidden>Beyond clarity, add “why us” to build
+                            team pride.</div>
+                    </div>
+                    <div
+                        class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider"
+                            data-lang="zh">激励与反馈</div>
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider" data-lang="en"
+                            hidden>Motivation</div>
+                        <div class="text-xs text-slate-400" data-lang="zh">公开、集体、精神层面的激励更有效；差异化管理是必须的。</div>
+                        <div class="text-xs text-slate-400" data-lang="en" hidden>Public, team-based recognition works
+                            well; manage different groups differently.</div>
+                    </div>
+                    <div
+                        class="bg-surfin-card p-4 rounded-lg border border-white/5 hover:border-indo-gold/30 transition-colors">
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider"
+                            data-lang="zh">冲突处理</div>
+                        <div class="text-[10px] font-bold text-indo-gold mb-1.5 uppercase tracking-wider" data-lang="en"
+                            hidden>Conflict</div>
+                        <div class="text-xs text-slate-400" data-lang="zh">本地冲突先恢复和谐；中外冲突要做“文化翻译”。</div>
+                        <div class="text-xs text-slate-400" data-lang="en" hidden>Restore harmony locally; be the
+                            cultural
+                            bridge in cross-team conflicts.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12 animate-slide-up" style="animation-delay: 0.26s">
+                <h2 class="text-base font-bold text-white mb-3">
+                    <span data-lang="zh">实践案例（节选）</span>
+                    <span data-lang="en" hidden>Case (excerpt)</span>
+                </h2>
+                <div class="bg-surfin-card rounded-xl p-5 border border-white/10">
+                    <p class="text-sm text-slate-400 leading-relaxed" data-lang="zh">
+                        销售外出频繁但动向不透明。我没有直接推“外出报备”，而是把它包装成“解决协同痛点”的升级：通过非正式沟通收集信息孤岛证据，再推出共享外出协作表格，让同事互相不打扰也能顺畅协作，同时自然获得管理掌控感。
+                    </p>
+                    <p class="text-sm text-slate-400 leading-relaxed" data-lang="en" hidden>
+                        Sales went out often, but visibility was low. Instead of a cold “reporting policy”, I packaged
+                        it as a collaboration upgrade: validate pain via informal chats, then launch a shared outing
+                        calendar that helped teammates coordinate without disturbance—while restoring managerial
+                        control naturally.
+                    </p>
+                </div>
+            </section>
+
+            <div class="text-center text-[10px] text-slate-600 font-mono mt-12">
+                <span data-lang="zh">人力行政部-学习发展出品</span>
+                <span data-lang="en" hidden>Produced by HR & Learning Development</span>
+            </div>
+
+            <div
+                class="fixed bottom-0 left-0 right-0 z-50 px-4 pb-6 pt-4 bg-gradient-to-t from-[#0f172a] via-[#0f172a] to-transparent flex justify-center">
+                <button onclick="navigateTo('playbook1-article')"
+                    class="w-full max-w-md bg-indo-gold hover:bg-amber-600 text-black h-12 rounded-full shadow-lg flex items-center justify-center gap-2 text-sm font-bold"><span
+                        data-lang="zh">阅读完整手册</span><span data-lang="en" hidden>Read full playbook</span> <i
                         class="ph-bold ph-arrow-right"></i></button>
             </div>
         </main>
@@ -2549,6 +2793,173 @@
         </div>
     </article>
 
+    <!-- PLAYBOOK 01 ARTICLE (Indonesia) -->
+    <article id="view-playbook1-article" class="view-section hidden w-full min-h-screen bg-[#0f172a] relative z-50">
+        <div class="article-flag flag-indonesia"></div>
+        <div class="relative z-10 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
+            <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12"
+                data-lang="zh">
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('playbook1-summary')"
+                        class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i
+                            class="ph-bold ph-arrow-left"></i><span data-i18n="back-overview">返回概览</span></button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">《目标国家跨文化管理使用手册》——
+                    印度尼西亚
+                </h1>
+                <div class="note-card note-indo mb-8">
+                    <div class="note-title">要点速记</div>
+                    <p class="m-0">印尼文化核心是多样性中的统一，管理是经营关系与和谐。</p>
+                    <p class="m-0">高权力距离+高语境沟通：更明确方向，更重视非正式沟通。</p>
+                    <div class="note-steps">文化差异 → 关键情境策略 → 实践案例 → 工具箱 → 建议。</div>
+                </div>
+
+                <h2>一、国家/地区概况</h2>
+                <p>印度尼西亚文化核心是多样性中的统一。作为一名在此地的中国管理者，我深刻体会到，管理印尼团队也是在管理一种复杂而精妙的关系网络和和谐生态。</p>
+
+                <h2>二、核心文化差异要点</h2>
+                <h3>1. 权力距离 & 长辈主义</h3>
+                <p><strong>文化表现：</strong>员工视领导为长辈Bapak，期望被指导，同时也给予尊重。极少提出异议。</p>
+                <p><strong>管理启示：</strong>扮演“严父慈母”的角色。一方面要有权威，给出明确的方向和决策（严父）；另一方面要投入大量精力进行个人关怀（慈母），比如记住员工的生日、关心其家庭状况。主动放权和鼓励安全地犯错，是培养本地团队自主性的关键，但这需要漫长且耐心的过程。
+                </p>
+
+                <h3>2. 强集体主义 & 互助精神</h3>
+                <p><strong>文化表现：</strong>团队利益、集体和谐高于个人表现。员工们倾向于互相帮助，共同完成任务。</p>
+                <p><strong>管理启示：</strong>激励机制须向团队倾斜。设计市场激励方案时，团队目标达成奖可以比个人奖更高权重。公开表扬时，多强调团队共同取得某种成绩。利用这种文化增强团队凝聚力。</p>
+
+                <h3>3. 高语境沟通</h3>
+                <p><strong>文化表现：</strong>员工害怕让别人感觉不好，因此极少直接说不或表达负面意见。一个看似没有进展的部分，真实原因可能是他们不好意思告诉你某个资源协调不下来，或不好意思告诉你某个数据的下降。
+                </p>
+                <p><strong>管理启示：</strong>非正式沟通的价值大于正式会议。可以通过大量的非正式喝咖啡、聊天、午餐会来捕捉真实信息。作为管理者，要主动帮助他们说出困难，主动询问事情推进有难度，是否需要协调沟通。要成为那个帮他们出头解决问题的人。
+                </p>
+
+                <h2>三、关键管理情境与策略</h2>
+                <h3>1. 任务布置/协同</h3>
+                <p><strong>策略：</strong>除了使用“五点法”明确指令，更要强调为什么是我们团队来做，赋予任务集体荣誉感。在跨部门协同中，我作为某些团队负责人，需要亲自出面铺路，先与相关部门负责人建立良好关系，再让我的团队去执行。
+                </p>
+
+                <h3>2. 激励与反馈</h3>
+                <p><strong>策略：</strong>对本地团队，公开的、集体的、精神层面的激励效果比较好。对我管理的中国客服团队，则需要采用直接的、与个人绩效强相关的物质激励。这种差异化管理是必须的。</p>
+
+                <h3>3. 冲突处理</h3>
+                <p><strong>策略：</strong>当本地团队之间发生冲突时，我的角色是和事佬，目标是恢复和谐。当本地团队与中国团队发生冲突时，我必须充当文化桥梁：向本地团队解释中方的直接是对事不对人，向中方团队解释印尼人的处事风格。
+                </p>
+
+                <h2>四、我的实践案例与成果</h2>
+                <h3>1. 案例背景</h3>
+                <p>管理期间，我发现一个潜在的管理风险：团队中（尤其是销售部门）员工的外出活动频繁，但外出事由和动向非常不透明。这给我个人带来了管理上的失控感。</p>
+
+                <h3>2. 深入调查</h3>
+                <p>我没有直接推行一个冷冰冰的外出报备制度，因为我深知在印尼，这会被直接解读为不信任。我决定从“解决团队内部协同痛点”出发，将管理制度包装成一次团队协作的优化升级。</p>
+
+                <h3>3. 非正式沟通，收集协同不畅的证据</h3>
+                <p>与几位员工聊天，询问他们是否有因为找不到外出的同事而让工作卡住的情况，并收集到了一些例子。定位到了一个表面上的痛点——信息孤岛：外出员工的动态是一个信息黑盒，可能导致内部协作效率降低。</p>
+
+                <h3>4. 以提升内部协作效率为名，推出解决方案</h3>
+                <p>在一次团队周会上，我没有谈管理和风险，而是聚焦于解决大家共同的协作。我的话术经过了精心设计：</p>
+                <p><strong>第一步（呈现问题，引起共鸣）：</strong>最近我听到了很多来自办公室同事的反馈，大家因为找不到外出的同事而导致工作延误，关键问题找不到人确认。同时，我也理解外出的同事，你们在客户那里，确实不方便随时接电话。这个问题，正在影响我们整个团队的效率和心情。
+                </p>
+                <p><strong>第二步（推出工具，强调利他）：</strong>为了解决这个信息孤岛，让大家互相帮助时能更顺畅，我让HR部门设计了一个共享的团队外出协作表格。它的核心目的，就是让我们需要协作时，能清楚地知道找谁和何时找。对办公室的同事来说，看一眼表格就知道某位同事正在和哪个客户开会，预计1小时后结束，那就可以安心地等同事开完会再联系，既不会打扰到对方，也能够在当天解决问题。对在外的同事来说，这也是对你的一种保护。把日程公开，就相当于告诉大家这个时间段请勿打扰，可以让你更专注地服务客户。
+                </p>
+                <p><strong>第三步（附加赋能）：</strong>当然，这个日历也是一个给我的求助信号板。如果你需要我提供支持，可以在上面标注。</p>
+
+                <h3>5. 成果</h3>
+                <p>• 这个制度切中了“提升协作效率”和“避免互相打扰”的点，员工更愿意接受，而不会解读为不信任。</p>
+                <p>• 我作为管理者的掌控感以一种自然方式达成，不再需要去猜或追问员工动向。</p>
+                <p>• 外出协作表格可以逐步演变为销售战报，成为周会复盘时有价值的数据来源。</p>
+
+                <h2>五、可复用工具/清单</h2>
+                <h3>《印尼本地核心人才保留与激励工具箱》</h3>
+                <h3>1. 关系建立工具</h3>
+                <p>• 个人关怀日历：记录核心员工及其家人的生日、重要纪念日。</p>
+                <p>• 非正式午餐轮值表：确保每月与每位核心下属有一次非正式的深入交流。</p>
+
+                <h3>2. 激励设计工具</h3>
+                <p>• “70/30”奖金原则：70%的奖金基于团队整体业绩，30%基于个人表现。</p>
+                <p>• 导师计划：资深员工指导新员工，并给予导师额外荣誉和津贴。</p>
+
+                <h3>3. 沟通辅助清单</h3>
+                <p>• 负面反馈“三明治”变体：肯定团队 → 私下指出个人待改进的具体行为 → 表达对其未来发展的信心和支持。</p>
+
+                <h2>六、结论与建议</h2>
+                <p><strong>结论：</strong>在印尼进行管理，本质上是一场本地化深耕。管理者需要抛弃中国经验的傲慢，深度融入本地文化，将自己定位为服务于本地团队的大家长。成功不取决于你带来了多少先进的流程，而取决于你在多大程度上赢得了本地团队的心。
+                </p>
+                <p><strong>建议：</strong>充分授权本地负责人：在关键的业务部门，如销售和渠道，大胆任用并充分信任本地负责人，给予他们足够的决策空间。</p>
+                <p><strong>建议：</strong>学会慢下来：商业决策和团队建设都需要耐心。花大量时间去建立关系、达成共识，看似很慢，但一旦共识形成，执行起来会非常迅速和坚定。</p>
+                <p><strong>建议：</strong>成为文化桥梁：不断进行双向翻译，将总部战略用本地团队能理解和接受的方式传达，同时把本地市场的真实情况和文化约束有效反馈给总部。</p>
+
+                <div class="text-center text-[10px] text-slate-600 font-mono mt-10">
+                    <span data-lang="zh">人力行政部-学习发展出品</span>
+                </div>
+            </div>
+
+            <div class="article-content glass-card rounded-[32px] border border-white/10 shadow-2xl px-5 sm:px-8 lg:px-12 py-8 sm:py-12"
+                data-lang="en" hidden>
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <button onclick="navigateTo('playbook1-summary')"
+                        class="text-slate-400 text-sm sm:text-base hover:text-white flex items-center gap-2"><i
+                            class="ph-bold ph-arrow-left"></i><span>Back to Overview</span></button>
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">Country Playbook —
+                    Indonesia</h1>
+                <div class="note-card note-indo mb-8">
+                    <div class="note-title">Key takeaways</div>
+                    <p class="m-0">Indonesia values unity-in-diversity; management is a relationship and harmony
+                        practice.</p>
+                    <p class="m-0">High power distance + high-context communication: be clear on direction and use
+                        informal channels to find real blockers.</p>
+                    <div class="note-steps">Culture → scenarios → case → toolbox → recommendations.</div>
+                </div>
+
+                <h2>I. Country context</h2>
+                <p>Indonesia’s cultural core is “unity in diversity”. Managing an Indonesian team means managing a
+                    complex relationship network while keeping harmony.</p>
+
+                <h2>II. Key cultural differences</h2>
+                <h3>1) Power distance & elderism</h3>
+                <p><strong>What it looks like:</strong> leaders are treated like elders (Bapak); open disagreement is
+                    rare.</p>
+                <p><strong>Implication:</strong> combine authority (clear direction/decisions) with personal care, then
+                    delegate patiently to build autonomy.</p>
+
+                <h3>2) Collectivism & mutual support</h3>
+                <p><strong>What it looks like:</strong> team harmony outweighs individual performance; people help each
+                    other.</p>
+                <p><strong>Implication:</strong> tilt incentives to team goals and praise collective wins publicly.</p>
+
+                <h3>3) High-context communication</h3>
+                <p><strong>What it looks like:</strong> people avoid saying “no”; delays may hide unspoken blockers.</p>
+                <p><strong>Implication:</strong> informal chats often outperform formal meetings; help teammates surface
+                    difficulties and coordinate support.</p>
+
+                <h2>III. Scenarios & strategies</h2>
+                <p><strong>Task briefing:</strong> clarify instructions and add “why our team owns this” to build pride.
+                    Leaders may need to build relationships first, then let the team execute.</p>
+                <p><strong>Motivation:</strong> public, team-based recognition works well locally; manage groups
+                    differently when needed.</p>
+                <p><strong>Conflict:</strong> restore harmony for local conflicts; translate culture for cross-team
+                    conflicts.</p>
+
+                <h2>IV. A practical case</h2>
+                <p>Instead of enforcing a cold “outing reporting policy”, I reframed it as a collaboration upgrade and
+                    launched a shared outing calendar—improving coordination and visibility without triggering distrust.
+                </p>
+
+                <h2>V. Toolbox</h2>
+                <p>Relationship tools (care calendar, lunch rotation), incentive tools (70/30 bonus, mentor program),
+                    and a feedback checklist (sandwich variant).</p>
+
+                <h2>VI. Conclusion</h2>
+                <p>Success requires local depth: empower local leaders, slow down to build consensus, and act as a
+                    cultural bridge between HQ and the local team.</p>
+
+                <div class="text-center text-[10px] text-slate-600 font-mono mt-10">
+                    <span data-lang="en">Produced by HR & Learning Development</span>
+                </div>
+            </div>
+        </div>
+    </article>
+
     <!-- CASE M1 ARTICLE (Frontline Ops) -->
     <article id="view-manager1-article"
         class="view-section hidden w-full min-h-screen bg-[#f6f8fb] relative z-40 manager-article">
@@ -2925,7 +3336,8 @@
                         <i class="ph-bold ph-arrow-left"></i><span data-i18n="back-overview">返回概览</span>
                     </button>
                 </div>
-                <h1 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">高效批评：从"三明治"到一对一正式反馈
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+                    高效批评：从"三明治"到一对一正式反馈
                 </h1>
                 <div class="note-card note-central mb-8"
                     style="background:#ffe4e6; color:#0f172a; border-color:#fecdd3;">
@@ -2934,10 +3346,12 @@
                     <p class="m-0">一对一正式批评+全面了解+让下属反馈+纠错方案+文档分享。</p>
                     <div class="note-steps" style="color:#be123c;">核心：下属的真改变才是批评的最终结果。</div>
                 </div>
-                <p>对于在管理过程中某些同学出现的错误，不知如何去把握批评的度，总是担心批评成了责备以至于下属会产生什么负面情绪，影响工作或者其他方面。所以在处理问题时，总是希望自己被认为是一个传统意义上的"好人"，没法让下属同事深刻的认识到自己的错误。</p>
+                <p>对于在管理过程中某些同学出现的错误，不知如何去把握批评的度，总是担心批评成了责备以至于下属会产生什么负面情绪，影响工作或者其他方面。所以在处理问题时，总是希望自己被认为是一个传统意义上的"好人"，没法让下属同事深刻的认识到自己的错误。
+                </p>
 
                 <h2>一、情境与冲突</h2>
-                <p>更多的是类似徐老师讲课中的三明治法批评，总是先肯定下属做的好的地方再引申出批评，导致批评的不深刻。在实际工作中偶尔会出现错误重新出现的情况，导致相同的错误出现两次，对个人以及团队造成不好的负面影响。而且批评很多细节自己都没有重视起来，每次批评的方式是多变的。</p>
+                <p>更多的是类似徐老师讲课中的三明治法批评，总是先肯定下属做的好的地方再引申出批评，导致批评的不深刻。在实际工作中偶尔会出现错误重新出现的情况，导致相同的错误出现两次，对个人以及团队造成不好的负面影响。而且批评很多细节自己都没有重视起来，每次批评的方式是多变的。
+                </p>
 
                 <h2>二、你之前的做法</h2>
                 <p>1) 采用三明治法批评，先肯定后批评，导致批评不深刻；2) 批评方式多变，没有形成固定的方法；3) 很多细节没有重视起来，相同错误可能出现两次。</p>
@@ -3085,13 +3499,16 @@
                         <div class="text-slate-900 font-semibold mb-1">2) 明确项目目标</div>以最大化压缩存储空间为目标，同时确保不能影响当前线上风控效果。
                     </div>
                     <div>
-                        <div class="text-slate-900 font-semibold mb-1">3) 明确项目重点</div>现状自查，研发、模型、政策、特征四方共同确认，出具严格全面的核验流程。
+                        <div class="text-slate-900 font-semibold mb-1">3) 明确项目重点</div>
+                        现状自查，研发、模型、政策、特征四方共同确认，出具严格全面的核验流程。
                     </div>
                     <div>
-                        <div class="text-slate-900 font-semibold mb-1">4) 指出潜在卡点</div>人员迭代导致不清楚数据源抽取逻辑，需基于开发代码全面排查；做好环境隔离；一步步迭代。
+                        <div class="text-slate-900 font-semibold mb-1">4) 指出潜在卡点</div>
+                        人员迭代导致不清楚数据源抽取逻辑，需基于开发代码全面排查；做好环境隔离；一步步迭代。
                     </div>
                     <div>
-                        <div class="text-slate-900 font-semibold mb-1">5) 确定反馈机制</div>确定各方项目进展时间及数据结论反馈机制，统一在钉钉群同步，确保各方清楚项目进度。
+                        <div class="text-slate-900 font-semibold mb-1">5) 确定反馈机制</div>
+                        确定各方项目进展时间及数据结论反馈机制，统一在钉钉群同步，确保各方清楚项目进度。
                     </div>
                 </div>
             </section>
@@ -3144,8 +3561,10 @@
                 <p>以肯尼亚抓取类数据存储优化项目为例。以下是布置逻辑：</p>
                 <p>首先描述清楚项目的背景，即当前数据源存储成本过大，为了节省成本需要对数据源的存储方式进行优化；</p>
                 <p>其次该项目以最大化压缩存储空间为目标，同时确保不能影响当前线上风控效果；</p>
-                <p>第三明确项目重点。现状自查，研发核查当前各数据源存储方式，特征核查各数据源应用逻辑；根据现状确认优化方案，并需要研发、模型、政策、特征四方共同确认，确认没问题再往下执行；模型、特征、政策需要出具严格全面的核验流程，包括优化前后特征的一致性，新实例切换后线上线下的一致性；</p>
-                <p>第四根据业务经验和对执行者的了解指出可能会存在的卡点。比如在该项目中，因为人员迭代，特征开发者或者特征使用者不清楚数据源的抽取逻辑，需要基于开发代码做全面排查，不能只依赖经验判断；因为过程中一旦有问题会严重影响线上，所以必须得做好环境隔离；因为可能有很多难以预料的潜在问题，优化方案需要一步步迭代，而且每一步需要做好数据校验、分析问题、定位问题、优化问题；每个业务线从数据存储到特征开发都有着差异，一开始需要选定试点项目，完善优化方案，再逐步全线迁移。</p>
+                <p>第三明确项目重点。现状自查，研发核查当前各数据源存储方式，特征核查各数据源应用逻辑；根据现状确认优化方案，并需要研发、模型、政策、特征四方共同确认，确认没问题再往下执行；模型、特征、政策需要出具严格全面的核验流程，包括优化前后特征的一致性，新实例切换后线上线下的一致性；
+                </p>
+                <p>第四根据业务经验和对执行者的了解指出可能会存在的卡点。比如在该项目中，因为人员迭代，特征开发者或者特征使用者不清楚数据源的抽取逻辑，需要基于开发代码做全面排查，不能只依赖经验判断；因为过程中一旦有问题会严重影响线上，所以必须得做好环境隔离；因为可能有很多难以预料的潜在问题，优化方案需要一步步迭代，而且每一步需要做好数据校验、分析问题、定位问题、优化问题；每个业务线从数据存储到特征开发都有着差异，一开始需要选定试点项目，完善优化方案，再逐步全线迁移。
+                </p>
                 <p>最后需要确定各方项目进展时间及数据结论反馈机制，统一在钉钉群同步，确保各方清楚项目进度。</p>
 
                 <h2>四、带来的变化或成果</h2>
@@ -3265,10 +3684,12 @@
                         <div class="text-slate-900 font-semibold mb-1">1) 植入目标</div>周会时候告诉大家记录和跟进线上问题，对自身的好处以及我对他们的工作期望。
                     </div>
                     <div>
-                        <div class="text-slate-900 font-semibold mb-1">2) 发现盲区</div>要求小组成员有问题必须记录，不管大小，周会对问题分析，并指出哪些地方记录的不够好，以及正确做法。
+                        <div class="text-slate-900 font-semibold mb-1">2) 发现盲区</div>
+                        要求小组成员有问题必须记录，不管大小，周会对问题分析，并指出哪些地方记录的不够好，以及正确做法。
                     </div>
                     <div>
-                        <div class="text-slate-900 font-semibold mb-1">3) 实战演习</div>让他们自己动手，记录的有问题也不会我自己去改，告诉他们正确的做法，让他们自己纠正并且找到根本原因。
+                        <div class="text-slate-900 font-semibold mb-1">3) 实战演习</div>
+                        让他们自己动手，记录的有问题也不会我自己去改，告诉他们正确的做法，让他们自己纠正并且找到根本原因。
                     </div>
                 </div>
             </section>
@@ -3300,7 +3721,8 @@
                         <i class="ph-bold ph-arrow-left"></i><span data-i18n="back-overview">返回概览</span>
                     </button>
                 </div>
-                <h1 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">培养团队问题记录能力：从被动到主动
+                <h1 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight">
+                    培养团队问题记录能力：从被动到主动
                 </h1>
                 <div class="note-card note-central mb-8"
                     style="background:#dbeafe; color:#0f172a; border-color:#93c5fd;">
@@ -3335,10 +3757,12 @@
     <script>
         let currentLang = 'zh';
         let currentLibrary = 'cross';
+        let currentCrossType = 'all';
 
         const copy = {
             comingSoon: { zh: '内容整理中 · 敬请期待', en: 'Content in progress · Coming soon' },
-            noCases: { zh: '暂无该库的案例，敬请期待。', en: 'No cases in this library yet. Stay tuned.' }
+            noCases: { zh: '暂无该库的案例，敬请期待。', en: 'No cases in this library yet. Stay tuned.' },
+            noResults: { zh: '暂无相关内容，敬请期待。', en: 'No content for this filter yet. Stay tuned.' }
         };
 
         const libraries = {
@@ -3363,6 +3787,7 @@
         const casesData = [
             {
                 viewId: 'case1-summary',
+                kind: 'case',
                 caseNumber: { zh: 'CASE 01 · 肯尼亚', en: 'CASE 01 · KENYA' },
                 borderClass: 'border-kenya-red',
                 labelClass: 'text-kenya-red border border-kenya-red/30',
@@ -3370,7 +3795,7 @@
                 title: { zh: '高风险环境下的管理实践', en: 'Managing in High-Risk Kenya' },
                 description: { zh: '外部暴乱 vs 内部红线，如何设计第三套生存系统？', en: 'Riots vs compliance red lines—how do you design a third survival system?' },
                 avatarInitial: 'B',
-                author: { zh: 'Bob · 危机管理', en: 'Bob · Crisis Management' },
+                author: { zh: '刘博 (Bob) · 危机管理', en: 'Bob · Crisis Management' },
                 library: 'cross',
                 styleClass: 'style-kenya',
                 flagClass: 'flag-kenya',
@@ -3378,6 +3803,7 @@
             },
             {
                 viewId: 'case2-summary',
+                kind: 'case',
                 caseNumber: { zh: 'CASE 02 · 印尼', en: 'CASE 02 · INDONESIA' },
                 borderClass: 'border-indo-gold',
                 labelClass: 'text-indo-gold border border-indo-gold/30',
@@ -3385,7 +3811,7 @@
                 title: { zh: '从超级PM到指挥官的转型之路', en: 'From Super PM to Commander' },
                 description: { zh: '累死累活团队却长不大？用授权协议把能力复制给团队。', en: 'Burning out while the team stays small? Use a delegation pact to copy your capabilities to them.' },
                 avatarInitial: 'L',
-                author: { zh: 'Liu Lin · 授权', en: 'Liu Lin · Delegation' },
+                author: { zh: '刘林 · 授权', en: 'Liu Lin · Delegation' },
                 library: 'cross',
                 styleClass: 'style-indonesia',
                 flagClass: 'flag-indonesia',
@@ -3393,6 +3819,7 @@
             },
             {
                 viewId: 'case3-summary',
+                kind: 'case',
                 caseNumber: { zh: 'CASE 03 · 墨西哥', en: 'CASE 03 · MEXICO' },
                 borderClass: 'border-[#24C08C]',
                 labelClass: 'text-[#24C08C] border border-[#24C08C]/30',
@@ -3400,7 +3827,7 @@
                 title: { zh: '如何拆掉一堵“隐形的墙”', en: 'How to dismantle an "invisible wall"' },
                 description: { zh: '面对“非必要不沟通”的文化墙，如何让协作流动起来？', en: 'Facing a “no unnecessary communication” culture—how do you make collaboration flow?' },
                 avatarInitial: 'L',
-                author: { zh: 'Lu Lu · 跨文化', en: 'Lu Lu · Cross-cultural' },
+                author: { zh: '路璐 · 跨文化', en: 'Lu Lu · Cross-cultural' },
                 library: 'cross',
                 styleClass: 'style-mexico',
                 flagClass: 'flag-mexico',
@@ -3408,6 +3835,7 @@
             },
             {
                 viewId: 'case4-summary',
+                kind: 'case',
                 caseNumber: { zh: 'CASE 04 · 哈萨克斯坦', en: 'CASE 04 · KAZAKHSTAN' },
                 borderClass: 'border-central-blue',
                 labelClass: 'text-central-blue border border-central-blue/30',
@@ -3415,14 +3843,31 @@
                 title: { zh: '一次“让对方会做”的跨文化任务辅导', en: 'Coaching that makes others capable' },
                 description: { zh: '新人不敢动？用前馈清单和工具包，把“下指令”变成“搭桥梁”。', en: 'Newcomer afraid to act? Use feedforward checklists and toolkits to turn commands into a bridge.' },
                 avatarInitial: 'L',
-                author: { zh: 'Li Changyue · 辅导', en: 'Li Changyue · Coaching' },
+                author: { zh: '李长玥 · 辅导', en: 'Li Changyue · Coaching' },
                 library: 'cross',
                 styleClass: 'style-kazakhstan',
                 flagClass: 'flag-kazakhstan',
                 readTime: { zh: '6 min', en: '6 min' }
             },
             {
+                viewId: 'playbook1-summary',
+                kind: 'playbook',
+                caseNumber: { zh: 'PLAYBOOK 01 · 印尼', en: 'PLAYBOOK 01 · INDONESIA' },
+                borderClass: 'border-indo-gold',
+                labelClass: 'text-indo-gold border border-indo-gold/30',
+                silhouetteClass: 'bg-indo',
+                title: { zh: '目标国家跨文化管理使用手册', en: 'Country Playbook: Indonesia' },
+                description: { zh: '从文化差异到情境策略：把“关系与和谐”落成可执行的管理系统。', en: 'From cultural cues to scenarios: turn “relationship & harmony” into an executable system.' },
+                avatarInitial: 'P',
+                author: { zh: '海外PM · 印度尼西亚', en: 'Overseas PM · Indonesia' },
+                library: 'cross',
+                styleClass: 'style-indonesia',
+                flagClass: 'flag-indonesia',
+                readTime: { zh: '10 min', en: '10 min' }
+            },
+            {
                 caseNumber: { zh: 'CASE 05 · 全球', en: 'CASE 05 · GLOBAL' },
+                kind: 'case',
                 borderClass: 'border-white/10',
                 labelClass: 'text-slate-300 border border-white/20',
                 silhouetteClass: 'bg-kenya',
@@ -3438,6 +3883,7 @@
             },
             {
                 caseNumber: { zh: 'CASE 06 · 待定', en: 'CASE 06 · TBD' },
+                kind: 'case',
                 borderClass: 'border-white/10',
                 labelClass: 'text-slate-300 border border-white/20',
                 silhouetteClass: 'bg-mexico',
@@ -3548,7 +3994,14 @@
         function renderCaseGrid() {
             const grid = document.getElementById('case-grid');
             if (!grid) return;
-            const filtered = casesData.filter(card => card.library === currentLibrary);
+            const filtered = casesData.filter(card => {
+                const libMatch = card.library === currentLibrary;
+                if (!libMatch) return false;
+                if (currentLibrary === 'cross' && currentCrossType !== 'all') {
+                    return card.kind === currentCrossType;
+                }
+                return true;
+            });
             if (filtered.length === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center text-slate-400 py-10">${copy.noCases[currentLang]}</div>`;
                 return;
@@ -3636,7 +4089,21 @@
         function toggleLang() {
             currentLang = currentLang === 'zh' ? 'en' : 'zh';
             applyI18n();
-            setLibrary(currentLibrary);
+        }
+
+        function setCrossTypeFilter(type) {
+            currentCrossType = type;
+            const buttons = document.querySelectorAll('#cross-filter-bar button[data-filter]');
+            buttons.forEach(btn => {
+                if (btn.dataset.filter === type) {
+                    btn.classList.add('bg-gray-800', 'text-slate-100', 'border-gray-700');
+                    btn.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-white/5', 'border-transparent');
+                } else {
+                    btn.classList.remove('bg-gray-800', 'text-slate-100', 'border-gray-700');
+                    btn.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-white/5', 'border-transparent');
+                }
+            });
+            renderCaseGrid();
         }
 
         function setLibrary(lib) {
@@ -3659,6 +4126,16 @@
                     bodyEl.classList.add('manager-mode');
                 }
             }
+
+            const crossFilterBar = document.getElementById('cross-filter-bar');
+            if (crossFilterBar) {
+                if (lib === 'cross') {
+                    crossFilterBar.hidden = false;
+                } else {
+                    crossFilterBar.hidden = true;
+                }
+            }
+
             const hero = heroCopy[lib] || heroCopy.cross;
             const heroTitleZh = document.getElementById('hero-title-zh');
             const heroTitleEn = document.getElementById('hero-title-en');
