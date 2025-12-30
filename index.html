@@ -699,10 +699,316 @@
         color: #0f172a !important;
         font-weight: 500;
       }
+
+      /* =============== 密码保护页面样式 =============== */
+      #password-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0b1120 0%, #1e3a5f 50%, #0b1120 100%);
+        background-size: 400% 400%;
+        animation: gradientFlow 15s ease infinite;
+      }
+
+      @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* 流动光点背景 */
+      .password-particles {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .password-particles::before,
+      .password-particles::after {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        animation: floatParticle 20s ease-in-out infinite;
+      }
+
+      .password-particles::before {
+        background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+        top: -100px;
+        left: -100px;
+      }
+
+      .password-particles::after {
+        background: linear-gradient(135deg, #008751, #10b981);
+        bottom: -100px;
+        right: -100px;
+        animation-delay: -10s;
+      }
+
+      @keyframes floatParticle {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(100px, 50px) scale(1.1); }
+        50% { transform: translate(50px, 100px) scale(0.9); }
+        75% { transform: translate(-50px, 50px) scale(1.05); }
+      }
+
+      /* 玻璃卡片容器 */
+      .password-card {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        padding: 48px 40px;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 
+          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+          0 -20px 40px -20px rgba(14, 165, 233, 0.1) inset;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .password-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 
+          0 35px 60px -15px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+          0 -20px 40px -20px rgba(14, 165, 233, 0.15) inset;
+      }
+
+      .password-logo {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 24px;
+        background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 700;
+        color: white;
+        box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.4);
+      }
+
+      .password-title {
+        font-family: 'Noto Serif SC', serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .password-subtitle {
+        font-size: 0.875rem;
+        color: #94a3b8;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .password-input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .password-input {
+        width: 100%;
+        padding: 16px 48px 16px 20px;
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        color: white;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .password-input::placeholder {
+        color: #64748b;
+      }
+
+      .password-input:focus {
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15), 0 0 20px rgba(14, 165, 233, 0.2);
+      }
+
+      .password-input.error {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+        animation: shake 0.5s ease-in-out;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+        20%, 40%, 60%, 80% { transform: translateX(8px); }
+      }
+
+      .password-toggle {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #64748b;
+        cursor: pointer;
+        font-size: 1.25rem;
+        transition: color 0.2s ease;
+      }
+
+      .password-toggle:hover {
+        color: #94a3b8;
+      }
+
+      .password-remember {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+        cursor: pointer;
+      }
+
+      .password-remember input {
+        width: 18px;
+        height: 18px;
+        accent-color: #0ea5e9;
+        cursor: pointer;
+      }
+
+      .password-remember span {
+        font-size: 0.875rem;
+        color: #94a3b8;
+      }
+
+      .password-submit {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        border: none;
+        border-radius: 16px;
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .password-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.4);
+      }
+
+      .password-submit:active {
+        transform: translateY(0);
+      }
+
+      .password-error-msg {
+        text-align: center;
+        color: #f87171;
+        font-size: 0.875rem;
+        margin-top: 16px;
+        min-height: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .password-error-msg.visible {
+        opacity: 1;
+      }
+
+      .password-footer {
+        text-align: center;
+        margin-top: 24px;
+        font-size: 0.75rem;
+        color: #475569;
+      }
+
+      /* 解锁成功过渡动画 */
+      #password-gate.unlocking {
+        animation: unlockFade 0.8s ease forwards;
+      }
+
+      @keyframes unlockFade {
+        0% { opacity: 1; backdrop-filter: blur(24px); }
+        100% { opacity: 0; backdrop-filter: blur(0px); pointer-events: none; }
+      }
+
+      #app-content {
+        transition: opacity 0.5s ease, filter 0.5s ease;
+      }
+
+      #app-content.locked {
+        opacity: 0;
+        filter: blur(20px);
+        pointer-events: none;
+      }
+
+      #app-content.unlocked {
+        opacity: 1;
+        filter: blur(0);
+      }
     </style>
   </head>
 
   <body class="antialiased">
+    <!-- ==================== 密码保护页面 ==================== -->
+    <div id="password-gate">
+      <div class="password-particles"></div>
+      <div class="password-card mx-4">
+        <div class="password-logo">S</div>
+        <h1 class="password-title">
+          <span data-lang="zh">Surfin 管理训练营</span>
+          <span data-lang="en" hidden>Surfin Management Camp</span>
+        </h1>
+        <p class="password-subtitle">
+          <span data-lang="zh">请输入访问密码</span>
+          <span data-lang="en" hidden>Please enter access password</span>
+        </p>
+        <div class="password-input-wrapper">
+          <input 
+            type="password" 
+            id="password-input" 
+            class="password-input" 
+            placeholder="输入密码 / Enter password"
+            autocomplete="off"
+          />
+          <button type="button" class="password-toggle" id="password-toggle">
+            <i class="ph-bold ph-eye"></i>
+          </button>
+        </div>
+        <label class="password-remember">
+          <input type="checkbox" id="remember-me" checked />
+          <span data-lang="zh">7天内免密登录</span>
+          <span data-lang="en" hidden>Remember for 7 days</span>
+        </label>
+        <button type="button" class="password-submit" id="password-submit">
+          <span data-lang="zh">进入案例库</span>
+          <span data-lang="en" hidden>Enter Case Library</span>
+        </button>
+        <div class="password-error-msg" id="password-error">
+          <span data-lang="zh">密码错误，请重试</span>
+          <span data-lang="en" hidden>Incorrect password, please try again</span>
+        </div>
+        <div class="password-footer">
+          <span data-lang="zh">© 2025 Surfin 人力行政部-学习发展</span>
+          <span data-lang="en" hidden>© 2025 Surfin HR & Learning Development</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 主应用内容 ==================== -->
+    <div id="app-content" class="locked">
     <button
       id="lang-toggle"
       class="fixed top-4 right-4 z-[60] px-3 py-1.5 rounded-full border border-white/20 bg-white/10 text-white text-xs font-semibold shadow hover:bg-white/20 transition"
@@ -7768,6 +8074,120 @@
           insight.classList.add("animate-fade-in");
         }
       }
+
+      // ==================== 密码保护逻辑 ====================
+      (function initPasswordProtection() {
+        // SHA-256 哈希函数
+        async function sha256(message) {
+          const msgBuffer = new TextEncoder().encode(message);
+          const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+          return hashHex;
+        }
+
+        // 预计算的密码哈希 (surfinpm)
+        const CORRECT_HASH = '60f40e49c3e7ae89e8cc7b7e242cdde79f7c6fbe4b122545742388740b5e0c44';
+        const AUTH_KEY = 'surfin_case_auth';
+        const AUTH_EXPIRY_DAYS = 7;
+
+        const gate = document.getElementById('password-gate');
+        const appContent = document.getElementById('app-content');
+        const passwordInput = document.getElementById('password-input');
+        const passwordToggle = document.getElementById('password-toggle');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordError = document.getElementById('password-error');
+        const rememberMe = document.getElementById('remember-me');
+
+        // 检查是否已登录
+        function checkAuth() {
+          const authData = localStorage.getItem(AUTH_KEY);
+          if (authData) {
+            try {
+              const { hash, expiry } = JSON.parse(authData);
+              if (hash === CORRECT_HASH && new Date().getTime() < expiry) {
+                unlockApp(true);
+                return true;
+              }
+            } catch (e) {
+              localStorage.removeItem(AUTH_KEY);
+            }
+          }
+          return false;
+        }
+
+        // 解锁应用
+        function unlockApp(instant = false) {
+          if (instant) {
+            gate.style.display = 'none';
+            appContent.classList.remove('locked');
+            appContent.classList.add('unlocked');
+          } else {
+            gate.classList.add('unlocking');
+            appContent.classList.remove('locked');
+            appContent.classList.add('unlocked');
+            setTimeout(() => {
+              gate.style.display = 'none';
+            }, 800);
+          }
+        }
+
+        // 验证密码
+        async function verifyPassword() {
+          const password = passwordInput.value.trim();
+          if (!password) {
+            showError();
+            return;
+          }
+
+          const hash = await sha256(password);
+          
+          if (hash === CORRECT_HASH) {
+            // 保存登录状态
+            if (rememberMe.checked) {
+              const expiry = new Date().getTime() + (AUTH_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
+              localStorage.setItem(AUTH_KEY, JSON.stringify({ hash: CORRECT_HASH, expiry }));
+            }
+            unlockApp();
+          } else {
+            showError();
+          }
+        }
+
+        // 显示错误
+        function showError() {
+          passwordInput.classList.add('error');
+          passwordError.classList.add('visible');
+          setTimeout(() => {
+            passwordInput.classList.remove('error');
+            passwordError.classList.remove('visible');
+          }, 2000);
+        }
+
+        // 切换密码显示
+        function togglePasswordVisibility() {
+          const type = passwordInput.type === 'password' ? 'text' : 'password';
+          passwordInput.type = type;
+          const icon = passwordToggle.querySelector('i');
+          icon.className = type === 'password' ? 'ph-bold ph-eye' : 'ph-bold ph-eye-slash';
+        }
+
+        // 事件绑定
+        passwordSubmit.addEventListener('click', verifyPassword);
+        passwordToggle.addEventListener('click', togglePasswordVisibility);
+        passwordInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            verifyPassword();
+          }
+        });
+
+        // 初始化检查
+        if (!checkAuth()) {
+          gate.style.display = 'flex';
+          appContent.classList.add('locked');
+        }
+      })();
     </script>
+    </div> <!-- /app-content -->
   </body>
 </html>
