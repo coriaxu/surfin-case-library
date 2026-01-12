@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surfin PM 优秀管理案例库｜一次“让对方会做”的跨文化任务辅导</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --theme:#4f46e5;/* Indigo-600 */
+      --theme-soft:rgba(79,70,229,.12);
+      --ink:#111827;
+    }
+    html,body{background:#fafafa;color:var(--ink);} 
+    .cn{font-family:"Noto Serif SC",serif;}
+    .en{font-family:"Poppins",sans-serif; letter-spacing:.2px;}
+    .saturate-card{
+      background:
+        radial-gradient(120% 120% at 0% 0%, rgba(79,70,229,.18) 0%, rgba(79,70,229,0) 60%),
+        linear-gradient(180deg, rgba(79,70,229,.06), rgba(79,70,229,.0));
+      border:1px solid rgba(79,70,229,.18);
+    }
+    .tight p,.tight li{margin:0.25rem 0;}
+    .avoid-break{break-inside: avoid; page-break-inside: avoid;}
+    /* 左列多栏，避免大块空白；小屏回落为单栏 */
+    @media (min-width: 1024px){
+      .left-columns{columns: 2 280px; column-gap: 1rem;}
+    }
+    @media (max-width: 1023.98px){
+      .left-columns{columns:1;}
+    }
+    /* 卡片统一紧凑感 */
+    .card{border-radius:14px; padding:14px 16px;}
+    .chip{border:1px dashed rgba(79,70,229,.4); padding:2px 8px; border-radius:999px;}
+  </style>
+</head>
+<body>
+  <!-- 页头 Header -->
+  <header class="relative overflow-hidden">
+    <div class="max-w-screen-xl mx-auto px-5 pt-8 pb-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h1 class="cn text-4xl md:text-5xl font-black leading-tight">
+            Surfin PM 优秀管理案例库
+          </h1>
+          <p class="cn text-2xl md:text-3xl font-extrabold mt-2">
+            一次「让对方会做」的跨文化任务辅导
+          </p>
+          <div class="mt-3 flex flex-wrap items-center gap-3">
+            <span class="chip en text-xs"><i class="fa-regular fa-calendar"></i> 2025.09</span>
+            <span class="chip en text-xs"><i class="fa-regular fa-building"></i> PM 管理训练营 · Surfin</span>
+            <span class="chip en text-xs"><i class="fa-regular fa-user"></i> 案例贡献人：李长玥（中亚区域 PM）</span>
+            <span class="chip en text-xs"><i class="fa-regular fa-location-dot"></i> 阿拉木图 · KZ</span>
+          </div>
+        </div>
+        <div class="en text-[12px] md:text-sm text-right text-indigo-700 font-semibold">
+        </div>
+      </div>
+    </div>
+    <div class="h-px w-full bg-gradient-to-r from-indigo-600/70 via-indigo-600/20 to-transparent"></div>
+  </header>
+
+  <!-- 主内容区 Main Body：4 + 8 双列 -->
+  <main class="max-w-screen-xl mx-auto px-5 py-6">
+    <div class="grid grid-cols-12 gap-4 md:gap-6 items-start">
+      <!-- 左列 4：多栏/瀑布流 - 资讯块（确保高饱和，无底部留白；含补位卡） -->
+      <aside class="col-span-12 lg:col-span-4 left-columns">
+        <!-- 情境速览 -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-rectangle-list mr-2"></i>情境速览</h3>
+          <ul class="cn tight text-lg font-bold leading-snug">
+            <li>任务：双语（俄/哈）本地化，上线有时限与合规压力</li>
+            <li>执行者：本地业务支持——积极但缺方法</li>
+            <li>症状：纠结术语、难以下手、初稿混乱、返工频繁</li>
+          </ul>
+        </section>
+
+        <!-- 典型误区 -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-circle-dot mr-2"></i>典型误区（多数人会选）</h3>
+          <ol class="cn tight text-base leading-snug list-decimal pl-5">
+            <li>加密汇报、用压力代替方法</li>
+            <li>贴“人不行”标签，直接换人</li>
+            <li>下达固定步骤：A→B→C</li>
+          </ol>
+        </section>
+
+        <!-- 路径设计五问（前馈清单） -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-lightbulb mr-2"></i>前馈清单：路径设计五问</h3>
+          <ul class="cn tight text-base leading-snug">
+            <li><b>起点</b>：为何要做？（对齐背景与意义）</li>
+            <li><b>终点</b>：交付尺度与标准？</li>
+            <li><b>重点</b>：关键少数的3–5步？</li>
+            <li><b>卡点</b>：预判阻力与资源缺口？</li>
+            <li><b>节点</b>：同步频率与里程碑？</li>
+          </ul>
+        </section>
+
+        <!-- 工具包 -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-folder-open mr-2"></i>前置工具包</h3>
+          <ul class="cn tight text-base leading-snug">
+            <li>《核心术语表》— 统一名词口径</li>
+            <li>《翻译协作流程图》— 谁在何时交付何物</li>
+            <li>《注意事项清单》— 风险点与格式规范</li>
+          </ul>
+        </section>
+
+        <!-- 沟通范式 -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-handshake mr-2"></i>沟通范式：反述确认</h3>
+          <p class="cn text-base leading-snug tight">
+            以“你如何理解本流程？”替代“照做”，让理解外显、共识生成。
+          </p>
+        </section>
+
+        <!-- 量化成效 -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-chart-bar mr-2"></i>成效速记</h3>
+          <ul class="cn tight text-base leading-snug">
+            <li>按时上线，返工率显著下降</li>
+            <li>执行者主动汇报、心态稳定</li>
+            <li>团队获得可复用的本地化范式</li>
+          </ul>
+        </section>
+
+        <!-- 补位卡：语录/要点，确保左列高度 ≥ 右列 95% -->
+        <section class="saturate-card card avoid-break mb-4">
+          <h3 class="cn text-xl font-black mb-2"><i class="fa-regular fa-quote-left mr-2"></i>管理认知</h3>
+          <p class="cn text-base leading-snug">
+            管理者不只是解题者，更是“路径设计师”：让别人能独立走完复杂路。
+          </p>
+        </section>
+      </aside>
+
+      <!-- 右列 8：核心信息区（紧凑、卡片化） -->
+      <section class="col-span-12 lg:col-span-8 space-y-4 md:space-y-5">
+        <!-- 情境与冲突 -->
+        <article class="saturate-card card">
+          <header class="flex items-center justify-between">
+            <h2 class="cn text-2xl md:text-[28px] font-black"><i class="fa-regular fa-clock mr-2"></i>一、情境与冲突</h2>
+            <span class="en text-xs chip"><i class="fa-regular fa-paper-plane"></i> locale & compliance critical</span>
+          </header>
+          <div class="cn tight text-base md:text-[17px] leading-7 mt-2">
+            <p>地点：哈萨克斯坦阿拉木图。任务：将产品前/后台及官网内容精准翻译为俄语与哈萨克语，既影响体验，也直接关涉合规。</p>
+            <p>执行同事态度积极但缺方法：围绕术语反复发问、对流程与优先级模糊，面临“长清单不敢动工”；初稿出现格式混乱与术语不统一，拖慢项目节奏。</p>
+            <p>管理两难：要时限，也要带人；自己下场做能救火但团队停滞，仅催促易伤积极性且引发文化摩擦。</p>
+          </div>
+        </article>
+
+        <!-- 决策与路径 -->
+        <article class="saturate-card card">
+          <h2 class="cn text-2xl md:text-[28px] font-black mb-2"><i class="fa-regular fa-object-group mr-2"></i>二、决策与路径</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="cn">
+              <h3 class="cn text-xl font-extrabold mb-1">判断与转向</h3>
+              <ul class="tight text-base leading-7">
+                <li>问题不在意愿，而在方法；从“推动任务”转为“搭建路径”。</li>
+                <li>把“他不行”改造为“他卡在哪里”——问题可拆解、可定位。</li>
+              </ul>
+              <h3 class="cn text-xl font-extrabold mt-3 mb-1">前馈清单（引导而非告知）</h3>
+              <ul class="tight text-base leading-7">
+                <li><b>起点</b>：为何要做？对齐背景与意义。</li>
+                <li><b>终点</b>：交付标准与验收口径。</li>
+                <li><b>重点</b>：关键少数步骤；把握主线。</li>
+                <li><b>卡点</b>：预判困难、资源安排。</li>
+                <li><b>节点</b>：设定同步频率与节拍。</li>
+              </ul>
+            </div>
+            <div class="cn">
+              <h3 class="cn text-xl font-extrabold mb-1">工具前置</h3>
+              <ul class="tight text-base leading-7">
+                <li>《核心术语表》统一语言，降低歧义。</li>
+                <li>《协作流程图》明确责任与交付。</li>
+                <li>《注意事项清单》固化规范与风险点。</li>
+              </ul>
+              <h3 class="cn text-xl font-extrabold mt-3 mb-1">沟通方式</h3>
+              <ul class="tight text-base leading-7">
+                <li>以“反述确认”替代“一锤定音”。</li>
+                <li>问题驱动：让对方自己形成路径感。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 结果与复盘 -->
+        <article class="saturate-card card">
+          <h2 class="cn text-2xl md:text-[28px] font-black mb-2"><i class="fa-regular fa-circle-check mr-2"></i>三、结果与复盘：信心的移植</h2>
+          <div class="cn tight text-base md:text-[17px] leading-7">
+            <p>短期见效：焦虑下降、推进有序、节点主动反馈；按时完成翻译，返工率显著下降，保障上线。</p>
+            <p>长期收益：执行者形成对复杂任务的全局模型与协作心智；管理者意识到价值在“可走之路”的设计与工具化的前置。</p>
+          </div>
+        </article>
+
+        <!-- 启示与迁移 -->
+        <article class="saturate-card card">
+          <h2 class="cn text-2xl md:text-[28px] font-black mb-2"><i class="fa-regular fa-compass mr-2"></i>四、启示与迁移：管理者即“路径设计师”</h2>
+          <ul class="cn tight text-base md:text-[17px] leading-7 list-disc pl-5">
+            <li><b>先诊断再行动</b>：用“意愿三角”（态度/能力/方法）定位问题，策略对因下药。</li>
+            <li><b>结构化沟通降本</b>：清单化提问降低认知成本，减少返工。</li>
+            <li><b>赋能前置</b>：工具与模板先到位，再开始动手。</li>
+            <li><b>多提问，少告知</b>：用“你打算怎么做”替代“你懂了吗”。</li>
+          </ul>
+        </article>
+
+        <!-- 可复用清单（打印即用） -->
+        <article class="saturate-card card">
+          <h2 class="cn text-2xl md:text-[28px] font-black mb-2"><i class="fa-regular fa-share-from-square mr-2"></i>可复用思考工具</h2>
+          <div class="grid md:grid-cols-3 gap-3">
+            <div class="avoid-break">
+              <h3 class="cn text-lg font-extrabold mb-1">启动 5 问</h3>
+              <ol class="cn tight text-sm leading-6 list-decimal pl-5">
+                <li>为什么做？</li><li>标准是什么？</li><li>关键步骤？</li><li>可能卡点？</li><li>同步节拍？</li>
+              </ol>
+            </div>
+            <div class="avoid-break">
+              <h3 class="cn text-lg font-extrabold mb-1">本地化检查表</h3>
+              <ul class="cn tight text-sm leading-6 list-disc pl-5">
+                <li>术语统一/来源记录</li>
+                <li>格式规范/标点风格</li>
+                <li>上下文一致性（前后台/官网）</li>
+                <li>合规必达项标注</li>
+              </ul>
+            </div>
+            <div class="avoid-break">
+              <h3 class="cn text-lg font-extrabold mb-1">沟通语句库</h3>
+              <ul class="cn tight text-sm leading-6 list-disc pl-5">
+                <li>“你复述一下现在的路径。”</li>
+                <li>“此处最小合格标准？”</li>
+                <li>“若遇X，备用方案Y/Z？”</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <!-- 中段分隔区 Mid-Breaker：全宽、风格切换 -->
+  <section class="mt-4">
+    <div class="bg-indigo-50/80 border-y border-indigo-200/60">
+      <div class="max-w-screen-xl mx-auto px-5 py-6">
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="saturate-card card">
+            <h4 class="cn text-xl font-black mb-1"><i class="fa-regular fa-bell mr-2"></i>风险前置</h4>
+            <p class="cn text-base tight leading-7">把“可能出错的地方”写成模板：谁触发、何时校对、如何追溯。</p>
+          </div>
+          <div class="saturate-card card">
+            <h4 class="cn text-xl font-black mb-1"><i class="fa-regular fa-star mr-2"></i>质量门槛</h4>
+            <p class="cn text-base tight leading-7">给“最小合格稿”画红线：格式、术语、示例一并给到，降低反复。</p>
+          </div>
+          <div class="saturate-card card">
+            <h4 class="cn text-xl font-black mb-1"><i class="fa-regular fa-paper-plane mr-2"></i>节拍设计</h4>
+            <p class="cn text-base tight leading-7">以短周期回路替代“等最终稿”：小步快跑，纠偏更轻。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 深色页脚 Dark Footer -->
+  <footer class="mt-6 bg-[#1f2937] text-white">
+    <div class="max-w-screen-xl mx-auto px-5 py-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="cn text-2xl font-black">结论 · 管理的真正价值</div>
+          <p class="cn text-base mt-1 opacity-90">不是替别人把路走完，而是把路设计清，把工具交到位，让对方能自己走下去。</p>
+        </div>
+        <div class="text-right">
+          <div class="en text-xs opacity-80">Project: Surfin PM 优秀管理案例库</div>
+          <div class="en text-xs opacity-80">Edition: PM 管理训练营 · Case Series</div>
+          <div class="en text-xs opacity-80"><i class="fa-regular fa-calendar"></i> 2025.09.16</div>
+        </div>
+      </div>
+      <div class="h-px my-4 bg-white/10"></div>
+      <div class="flex items-center justify-between">
+        <span class="en text-[11px] opacity-80">管理不只是一次任务辅导，更是一场能力与信心的培养</span>
+        <span class="cn text-sm font-bold">人力行政部-学习发展出品</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
